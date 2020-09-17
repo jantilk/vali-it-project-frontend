@@ -5,7 +5,7 @@ class FrontDataService {
         return http.post("/client", data);
     }
     getAll() {
-        return http.get("/device")
+        return http.get("/client")
     }
 }
 
