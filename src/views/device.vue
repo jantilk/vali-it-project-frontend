@@ -9,11 +9,11 @@
     <div v-if="!submitted">
       <div class="form-group">
         <label for="client_id">Client ID</label>
-        <input type="number" class="form-control" id="client_id" required v-model="device.client_id" name="ClientID"/>
+        <input type="number" class="form-control" id="client_id" required v-model="device.clientId" name="ClientID"/>
       </div>
       <div class="form-group">
         <label for="sn">Serial Number</label>
-        <input type="text" class="form-control" id="sn" required v-model="device.sn" name="SerialNumber">
+        <input type="text" class="form-control" id="sn" required v-model="device.serialNumber" name="SerialNumber">
       </div>
       <div class="form-group">
         <label for="counter">Counter</label>
@@ -21,7 +21,7 @@
       </div>
       <div class="form-group">
         <label for="product_id">Product ID</label>
-        <input type="number" class="form-control" id="product_id" required v-model="device.product_id" name="ProductID">
+        <input type="number" class="form-control" id="product_id" required v-model="device.productId" name="ProductID">
       </div>
 
       <button @click="createDevice" class="btn btn-success">Create</button>
@@ -43,10 +43,10 @@ export default {
     return {
       device: {
         id: null,
-        client_id: null,
-        sn: "",
+        clientId: null,
+        serialNumber: "",
         counter: null,
-        product_id: null,
+        productId: null,
       },
       submitted: false
     };
@@ -55,26 +55,24 @@ export default {
     createDevice() {
       let data = {
         // id: null,
-        client_id: this.device.client_id,
-        sn: this.device.sn,
+        clientId: this.device.clientId,
+        serialNumber: this.device.serialNumber,
         counter: this.device.counter,
-        product_id: this.product_id,
+        productId: this.device.productId,
       };
-
       ServiceDevice.createDevice(data)
-          .then(response => {
-          //   this.client.id = response.data.id;
-          //   console.log(response.data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
+          .then(this.submitted = true)
+          .then(response => console.log(response.data))
+          // .then(response => {
+          //   // this.client.id = response.data.id;
+          //   // console.log(response.data);
+          // })
+          .catch(e => {console.log(e);});
     },
-
     newDevice() {
       this.submitted = false;
       this.device = {};
-    }
+    },
   }
 };
 </script>
