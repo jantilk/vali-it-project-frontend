@@ -2,8 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import CreateClient from "@/views/client";
+
 import Device from '../views/device'
 import workOrder from "@/views/workOrder";
+
 
 Vue.use(VueRouter)
 
