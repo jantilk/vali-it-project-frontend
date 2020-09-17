@@ -4,11 +4,17 @@ class FrontDataService {
     create(data) {
         return http.post("/client", data);
     }
-    // createDevice(deviceData){
-    //     return http.post("/device", deviceData);
-    // }
+
     getAll() {
         return http.get("/client")
+    }
+
+    findByName(name) {
+        return http.get("clientlike",
+            {
+                params: {name}
+            }
+        )
     }
 }
 
