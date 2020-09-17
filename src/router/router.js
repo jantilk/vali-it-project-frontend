@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import CreateClient from "@/views/client";
-import Device from '../views/device'
+import Device from '@/views/device';
 
 Vue.use(VueRouter)
 
