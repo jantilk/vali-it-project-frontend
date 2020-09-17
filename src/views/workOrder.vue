@@ -71,10 +71,7 @@ export default {
       };
 
       ServiceWorkOrder.create(data)
-          .then(response => {
-            // this.workOrder.id = response.data.id;
-            // console.log(response.data);
-          })
+          .then(this.submitted = true)
           .catch(e => {
             console.log(e);
           });
