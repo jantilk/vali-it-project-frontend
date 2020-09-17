@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="submit-form">
     <div v-if="!submitted">
       <div class="form-group">
@@ -38,13 +39,21 @@
       <button class="btn btn-success" @click="newWorkOrder">Create another</button>
     </div>
   </div>
+  <br>
+  <all-workOrders></all-workOrders>
+  </div>
+
+
+
 </template>
 
 <script>
 import ServiceWorkOrder from "../Services/ServiceWorkOrder";
+import AllWorkOrders from "@/components/all-workOrders";
 
 export default {
   name: "workOrder",
+  components: {AllWorkOrders},
   data() {
     return {
       workOrder: {

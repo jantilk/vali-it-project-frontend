@@ -7,6 +7,9 @@ class ServiceWorkOrder {
     // getAll() {
     //     return http.get("/device")
     // }
+    getAll() {
+        return http.get("/getAllWorkOrders")
+    }
 }
 
 export default new ServiceWorkOrder();
