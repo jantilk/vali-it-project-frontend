@@ -9,12 +9,8 @@ class FrontDataService {
         return http.get("/client")
     }
 
-    findByName(name) {
-        return http.get("clientlike",
-            {
-                params: {name}
-            }
-        )
+    findByName(nameLike) {
+        return http.get("clientlike", {params: {nameLike}})
     }
 }
 

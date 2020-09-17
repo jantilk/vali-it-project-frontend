@@ -16,18 +16,18 @@
       </div>
     </div>
     <br>
-    <all-clients></all-clients>
+    <search-client></search-client>
   </div>
 </template>
 
 <script>
 
 import FrontDataService from "../Services/FrontDataService";
-import AllClients from "@/components/all-clients";
+import SearchClient from "@/components/search-client";
 
 export default {
   name: "client",
-  components: {AllClients},
+  components: {SearchClient},
   data() {
     return {
       client: {name: ""},
