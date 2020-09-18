@@ -7,6 +7,13 @@ class ServiceDevice {
     // getAll() {
     //     return http.get("/device")
     // }
+    searchAnyParam(anyParam){
+        return http.get("/device", {
+            params: {
+                "query": anyParam
+            }
+        });
+    }
 }
 
 export default new ServiceDevice();
