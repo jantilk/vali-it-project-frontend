@@ -3,10 +3,7 @@
     <div class="col-md-8">
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search by any parameter"
-               v-model="anyParam"/>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" @click="searchAnyParam">Search</button>
-        </div>
+               v-model="anyParam" v-on:input="searchAnyParam"/>
       </div>
     </div>
 
@@ -16,6 +13,7 @@
         <li class="list-group-item" v-for="device in devices">
 <!--          {{device.id}}-->
 <!--          <br>-->
+            <a href="/workOrder">
           Client ID:
           {{device.clientId}}
           <br>
@@ -27,6 +25,7 @@
           <br>
           Counter:
           {{device.counter}}
+            </a>
         </li>
       </ul>
     </div>
@@ -42,7 +41,7 @@ export default {
   data() {
     return {
       devices: [],
-      anyParam: ""
+      anyParam: null
     };
   },
   methods: {searchAnyParam() {
