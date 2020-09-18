@@ -14,7 +14,19 @@
       <h4>Device List</h4>
       <ul class="list-group">
         <li class="list-group-item" v-for="device in devices">
-          {{ device.anyParam }}
+<!--          {{device.id}}-->
+<!--          <br>-->
+          Client ID:
+          {{device.clientId}}
+          <br>
+          Product ID:
+          {{device.productId}}
+          <br>
+          S/N:
+          {{device.serialNumber}}
+          <br>
+          Counter:
+          {{device.counter}}
         </li>
       </ul>
     </div>
@@ -30,7 +42,7 @@ export default {
   data() {
     return {
       devices: [],
-      anyParam: null
+      anyParam: ""
     };
   },
   methods: {searchAnyParam() {

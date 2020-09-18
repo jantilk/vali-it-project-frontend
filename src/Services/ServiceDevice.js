@@ -8,11 +8,7 @@ class ServiceDevice {
     //     return http.get("/device")
     // }
     searchAnyParam(anyParam){
-        return http.get("/device", {
-            params: {
-                "query": anyParam
-            }
-        });
+        return http.get("/device", {params: {"query": anyParam}});
     }
 }
 
