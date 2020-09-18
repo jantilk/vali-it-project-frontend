@@ -1,5 +1,4 @@
 <template>
-  <div>
   <div class="submit-form">
     <div v-if="!submitted">
       <div class="form-group">
@@ -38,13 +37,11 @@
       <h4>Work order created successfully!</h4>
       <button class="btn btn-success" @click="newWorkOrder">Create another</button>
     </div>
-  </div>
   <br>
+    <div class="form-group">
     <search-workOrder></search-workOrder>
+    </div>
   </div>
-
-
-
 </template>
 
 <script>
