@@ -25,6 +25,7 @@
 import FrontDataService from "../Services/FrontDataService";
 import SearchClient from "@/components/search-client";
 
+
 export default {
   name: "client",
   components: {SearchClient},
