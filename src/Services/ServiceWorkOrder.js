@@ -15,6 +15,10 @@ class ServiceWorkOrder {
         return http.get("/workOrder", {params: {"query":anyParamWO}})
     }
 
+    findNotDone(statusParamWO) {
+        return http.get("/workOrderStatus", {params: {"status":statusParamWO}})
+    }
+
 }
 
 export default new ServiceWorkOrder();
