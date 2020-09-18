@@ -13,6 +13,7 @@
         <li class="list-group-item" v-for="device in devices">
 <!--          {{device.id}}-->
 <!--          <br>-->
+            <a href="/workOrder">
           Client ID:
           {{device.clientId}}
           <br>
@@ -24,6 +25,7 @@
           <br>
           Counter:
           {{device.counter}}
+            </a>
         </li>
       </ul>
     </div>
