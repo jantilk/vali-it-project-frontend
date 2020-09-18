@@ -40,7 +40,7 @@
     </div>
   </div>
   <br>
-  <all-workOrders></all-workOrders>
+    <search-workOrder></search-workOrder>
   </div>
 
 
@@ -49,22 +49,15 @@
 
 <script>
 import ServiceWorkOrder from "../Services/ServiceWorkOrder";
-import AllWorkOrders from "@/components/all-workOrders";
+//import AllWorkOrders from "@/components/all-workOrders";
+import SearchWorkOrder from "@/components/search-workOrder";
 
 export default {
   name: "workOrder",
-  components: {AllWorkOrders},
+  components: {SearchWorkOrder},
   data() {
     return {
-      workOrder: {
-        id: null,
-        jobDescription: "",
-        deviceId:null,
-        productId:null,
-        technicianId:null,
-        consumableId:null,
-        status:null,
-      },
+      workOrder: {anyParam:null},
       submitted: false
     };
   },
