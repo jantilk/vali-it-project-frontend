@@ -31,22 +31,26 @@
       <h4>Device created successfully!</h4>
       <button class="btn btn-success" @click="newDevice">Create another</button>
     </div>
+    <br>
+    <search-device></search-device>
   </div>
 </template>
 
 <script>
 import ServiceDevice from "@/Services/ServiceDevice";
+import SearchDevice from "@/components/search-device";
 
 export default {
-  name: "create-device",
+  name: "device",
+  components: {SearchDevice},
   data() {
     return {
       device: {
-        id: null,
-        clientId: null,
-        serialNumber: "",
-        counter: null,
-        productId: null,
+        anyParam: null
+        // clientId: null,
+        // serialNumber: "",
+        // counter: null,
+        // productId: null,
       },
       submitted: false
     };
