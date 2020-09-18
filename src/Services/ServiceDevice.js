@@ -1,13 +1,15 @@
 import http from "../http-common";
 
 class ServiceDevice {
-    createDevice(data){
+    createDevice(data) {
         return http.post("/device", data);
     }
-    // getAll() {
-    //     return http.get("/device")
-    // }
-    searchAnyParam(anyParam){
+
+    deviceByClient(name) {
+        return http.get("/client/" + name)
+    }
+
+    searchAnyParam(anyParam) {
         return http.get("/device", {params: {"query": anyParam}});
     }
 }
