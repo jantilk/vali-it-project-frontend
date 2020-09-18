@@ -1,18 +1,18 @@
 <template>
   <div>
     <div class="submit-form">
-      <div v-if="!submitted"> <!--todo ahhaa: if submitted=false, only then is this div visible-->
+      <div v-if="!submitted">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" required v-model="client.name" name="name"/>
         </div>
 
-        <button @click="createClient" class="btn btn-success">Create</button><!--todo ahhaa: if this button clicked, createClient runs from script-->
+        <button @click="createClient" class="btn btn-success">Create</button>
       </div>
 
-      <div v-else> <!--todo ahhaa: if submitted=true, then this div is visible-->
+      <div v-else>
         <h4>Client created successfully!</h4>
-        <button class="btn btn-success" @click="newClient">Create another</button> <!--todo ahhaa: if this button clicked, newClient runs from script methods-->
+        <button class="btn btn-success" @click="newClient">Create another</button>
       </div>
     </div>
     <br>

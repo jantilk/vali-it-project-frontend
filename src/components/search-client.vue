@@ -3,14 +3,7 @@
     <div class="col-md-8">
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search by name"
-               v-model="name"/>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button"
-                  @click="searchName"
-          >
-            Search
-          </button>
-        </div>
+               v-model="name" v-on:input="findByName"/>
       </div>
     </div>
 
@@ -18,7 +11,16 @@
       <h4>Clients List</h4>
       <ul class="list-group">
         <li class="list-group-item" v-for="client in clients">
-          {{ client.name }}
+          <a href="#" v-on:click="deviceByClient(client.name)">{{ client.name }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      Device List Here
+      <ul>
+        <li v-for="device in devices">
+          {{device}}
         </li>
       </ul>
     </div>
@@ -28,20 +30,32 @@
 
 <script>
 import FrontDataService from "@/Services/FrontDataService";
+import ServiceDevice from "@/Services/ServiceDevice";
 
 export default {
   name: "all-clients",
   data() {
     return {
       clients: [],
-      name: ""
+      devices: [],
+      name: null
     };
   },
-  methods: {searchName() {
+  methods: {
+    findByName() {
       FrontDataService.findByName(this.name)
           .then(response => {
             this.clients = response.data;
             console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+    deviceByClient() {
+      ServiceDevice.deviceByClient(this.name)
+          .then(response => {
+            this.devices = response.data;
           })
           .catch(e => {
             console.log(e);
