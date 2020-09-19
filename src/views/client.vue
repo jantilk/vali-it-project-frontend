@@ -1,20 +1,18 @@
 <template>
   <div>
-    <div class="submit-form">
-      <div v-if="!submitted">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" required v-model="client.name" name="name"/>
-        </div>
-
-        <button @click="createClient" class="btn btn-success">Create</button>
+    <div class="row" v-if="!submitted">
+      <div>
+        <input type="text" id="name" required v-model="client.name" name="name" placeholder="create new client"/>
       </div>
-
-      <div v-else>
-        <h4>Client created successfully!</h4>
-        <button class="btn btn-success" @click="newClient">Create another</button>
-      </div>
+      <button @click="createClient" class="btn btn-success">Create</button>
     </div>
+    <div class="row" v-else>
+      <!--TODO add @click to client name that goes to client page-->
+      <!--or TODO after creating client go to that client page-->
+      <a href="#">{{client.name}}</a>
+      <button class="btn btn-success" @click="newClient">Create another</button>
+    </div>
+
     <br>
     <search-client></search-client>
   </div>
@@ -52,8 +50,5 @@ export default {
 </script>
 
 <style scoped>
-.submit-form {
-  max-width: 300px;
-  margin: auto;
-}
+
 </style>
