@@ -5,8 +5,8 @@ class ServiceDevice {
         return http.post("/device", data);
     }
 
-    deviceByClient(name) {
-        return http.get("/client/" + name)
+    deviceByClientId(clientId) {
+        return http.get("/device/" + clientId)
     }
 
     searchAnyParam(anyParam) {
