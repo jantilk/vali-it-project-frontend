@@ -19,6 +19,11 @@ class ServiceWorkOrder {
         return http.get("/workOrderStatus", {params: {"status":statusParamWO}})
     }
 
+    findWOspecificId(id) {
+        return http.get("/workOrderById", {params: {"id":id}})
+    }
+
+
 }
 
 export default new ServiceWorkOrder();

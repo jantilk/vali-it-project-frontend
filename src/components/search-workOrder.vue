@@ -1,5 +1,6 @@
 <template>
   <div class="list row">
+
     <div class="col-md-12">
       <br>
       <br>
@@ -21,13 +22,15 @@
       <br>
       <br>
     </div>
-
     <div class="col-md-12">
       <h4>Work order List</h4>
+      <div v-if="!woSelected">
       <ul class="list-group">
+
         <li class="list-group-item" v-for="workOrder in workOrders">
+
           Work Order ID:
-          {{ workOrder.id }}
+          <button @click="showSpecific" v-model="specificId" class="btn btn-success">{{ workOrder.id }}</button>
           <br>
           Technician ID:
           {{ workOrder.technicianId }}
@@ -49,6 +52,24 @@
 
         </li>
       </ul>
+      </div>
+
+      <div v-else>
+        <h2>Selected</h2>
+<!--        <button class="btn btn-success" @click="newWorkOrder">Create another</button>-->
+        <ul class="list-group">
+
+          <li class="list-group-item" v-for="workOrder in workOrders">
+
+
+            Technician ID:
+            {{ workOrder.technicianId }}
+
+
+          </li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </template>
@@ -63,11 +84,14 @@ export default {
     return {
       workOrders: [],
       anyParamWO: null,
-      statusParamWO: false,
+      statusParamWO: null,
+      woSelected: false,
+      specificId: null,
     };
   },
   methods: {
     searchAnyParamWO() {
+      this.statusParamWO = null;
       ServiceWorkOrder.findByQuery(this.anyParamWO)
           .then(response => {
             this.workOrders = response.data;
@@ -86,8 +110,19 @@ export default {
           .catch(e => {
             console.log(e);
           });
+    },
+    showSpecific() {
+      this.woSelected = true;
+      ServiceWorkOrder.findWOspecificId(this.specificId)
+          .then(response => {
+            this.workOrders = response.data;
+            // console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
     }
-  },
+    },
 };
 </script>
 
