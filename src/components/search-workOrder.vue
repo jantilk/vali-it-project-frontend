@@ -21,13 +21,15 @@
       <br>
       <br>
     </div>
-
     <div class="col-md-12">
       <h4>Work order List</h4>
+
       <ul class="list-group">
+
         <li class="list-group-item" v-for="workOrder in workOrders">
+
           Work Order ID:
-          {{ workOrder.id }}
+          <a v-bind:href="''">{{ workOrder.id }}</a>
           <br>
           Technician ID:
           {{ workOrder.technicianId }}
@@ -63,11 +65,12 @@ export default {
     return {
       workOrders: [],
       anyParamWO: null,
-      statusParamWO: false,
+      statusParamWO: null,
     };
   },
   methods: {
     searchAnyParamWO() {
+      this.statusParamWO = null;
       ServiceWorkOrder.findByQuery(this.anyParamWO)
           .then(response => {
             this.workOrders = response.data;
@@ -87,7 +90,7 @@ export default {
             console.log(e);
           });
     }
-  },
+    },
 };
 </script>
 
