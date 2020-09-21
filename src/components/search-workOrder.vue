@@ -76,11 +76,24 @@
             Product ID:
             {{ workOrder.productId }}
             <br>
-            Consumable ID:
-            {{ workOrder.consumableId }}
+<!--            Consumable ID:-->
+<!--            {{ workOrder.consumableId }}-->
+
+
             <br>
             Job Description:
             {{ workOrder.jobDescription }}
+
+
+          </li>
+        </ul>
+
+        <ul class="list-group">
+          <li class="list-group-item" v-for="workOrderConsumable in workOrderConsumables">
+
+            Consumables:
+                        Work Order Consumable:
+                        {{ workOrderConsumable.WorkOrderconsumableId }}
 
           </li>
         </ul>
@@ -103,6 +116,7 @@ export default {
       statusParamWO: null,
       woSelected: false,
       workOrderId: null,
+      workOrderConsumables: []
     };
   },
   methods: {
@@ -120,6 +134,17 @@ export default {
             });
       }else{
         this.workOrders = [];
+      }
+    },
+    searchWorkOrderConsumables() {
+       ServiceWorkOrder.findWorkOrderConsumable(this.workOrderId)
+            .then(response => {
+              this.workOrderConsumables = response.data;
+              // console.log(response.data);
+            })
+            .catch(e => {
+              console.log(e);
+            });
       }
     },
     searchByStatus() {
