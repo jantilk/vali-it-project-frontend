@@ -26,7 +26,7 @@
 
 import ServiceClient from "../Services/ServiceClient";
 import SearchClient from "@/components/search-client";
-import DeviceFilter from "@/components/device-filter";
+import DeviceFilter from "@/components/device-by-client";
 
 
 export default {
