@@ -9,7 +9,7 @@
       <div class="input-group mb-1">
 
         <input type="text" class="form-control" placeholder="Search by tech./dev./prod./cons. id"
-               v-model="anyParamWO" v-on:input="searchAnyParamWO"/>
+               v-model="anyParamWO" @click="searchAnyParamWO" @input="searchAnyParamWO"/>
       </div>
     </div>
 
@@ -23,40 +23,40 @@
       <br>
     </div>
     <div class="col-md-12">
-      <h4>Work order List</h4>
+
       <div v-if="!woSelected">
-      <ul class="list-group">
 
-        <li class="list-group-item" v-for="workOrder in workOrders">
+        <ul class="list-group">
 
-          Work Order ID:
-          <button @click="showSpecific(workOrder.id)" class="btn btn-success">{{ workOrder.id }}</button>
-          <br>
-          Technician ID:
-          {{ workOrder.technicianId }}
-          <br>
-          Work done:
-          {{ workOrder.status }}
-          <br>
-          Device ID:
-          {{ workOrder.deviceId }}
-          <br>
-          Product ID:
-          {{ workOrder.productId }}
-          <br>
-          Consumable ID:
-          {{ workOrder.consumableId }}
-          <br>
-          Job Description:
-          {{ workOrder.jobDescription }}
+          <li class="list-group-item" v-for="workOrder in workOrders">
 
-        </li>
-      </ul>
+            Work Order ID:
+            <button @click="showSpecific(workOrder.id)" class="btn btn-success">{{ workOrder.id }}</button>
+            <br>
+            Technician ID:
+            {{ workOrder.technicianId }}
+            <br>
+            Work done:
+            {{ workOrder.status }}
+            <br>
+            Device ID:
+            {{ workOrder.deviceId }}
+            <br>
+            Product ID:
+            {{ workOrder.productId }}
+            <br>
+            Consumable ID:
+            {{ workOrder.consumableId }}
+            <br>
+            Job Description:
+            {{ workOrder.jobDescription }}
+
+          </li>
+        </ul>
       </div>
 
       <div v-else>
-        <h2>Selected</h2>
-<!--        <button class="btn btn-success" @click="newWorkOrder">Create another</button>-->
+
         <ul class="list-group">
 
           <li class="list-group-item" v-for="workOrder in workOrders">
@@ -108,16 +108,23 @@ export default {
   methods: {
     searchAnyParamWO() {
       this.statusParamWO = null;
-      ServiceWorkOrder.findByQuery(this.anyParamWO)
-          .then(response => {
-            this.workOrders = response.data;
-            // console.log(response.data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
+      if(this.anyParamWO){
+        this.woSelected = false;
+        ServiceWorkOrder.findByQuery(this.anyParamWO)
+            .then(response => {
+              this.workOrders = response.data;
+              // console.log(response.data);
+            })
+            .catch(e => {
+              console.log(e);
+            });
+      }else{
+        this.workOrders = [];
+      }
     },
     searchByStatus() {
+      this.woSelected = false;
+      this.anyParamWO = null;
       ServiceWorkOrder.findNotDone(this.statusParamWO)
           .then(response => {
             this.workOrders = response.data;
@@ -139,7 +146,7 @@ export default {
             console.log(e);
           });
     }
-    },
+  },
 };
 </script>
 

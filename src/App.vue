@@ -15,6 +15,7 @@
 
 
 <script>
+alert("Veebilehe kasutamine omal vastutusel. Jaanus, Tenno ja Morten ei saa kinnitada, et tehniku tehtud päringud saavad tõesed vastused. Saame vaid parimat loota");
 </script>
 
 
