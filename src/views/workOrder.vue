@@ -27,7 +27,7 @@
       </div>
       <div class="form-group">
         <label for="status">Work order completed </label>
-        <input type="checkbox" class="form-control" id="status" required v-model="workOrder.status" name="status"/>
+        <input align="left" type="checkbox" class="form-control" id="status" required v-model="workOrder.status" name="status"/>
       </div>
 
       <button @click="createWorkOrder" class="btn btn-success">Create</button>
