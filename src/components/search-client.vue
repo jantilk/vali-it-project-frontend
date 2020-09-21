@@ -27,7 +27,7 @@
 
 
 <script>
-import FrontDataService from "@/Services/FrontDataService";
+import ServiceClient from "@/Services/ServiceClient";
 import ServiceDevice from "@/Services/ServiceDevice";
 
 export default {
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     clientByName() {
-      FrontDataService.clientByName(this.name)
+      ServiceClient.clientByName(this.name)
           .then(response => {
             this.clients = response.data;
             console.log(response.data);

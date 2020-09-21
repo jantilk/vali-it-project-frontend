@@ -15,18 +15,23 @@
 
     <br>
     <search-client></search-client>
+
+    <br>
+    device filter
+    <device-filter></device-filter>
   </div>
 </template>
 
 <script>
 
-import FrontDataService from "../Services/FrontDataService";
+import ServiceClient from "../Services/ServiceClient";
 import SearchClient from "@/components/search-client";
+import DeviceFilter from "@/components/device-filter";
 
 
 export default {
   name: "client",
-  components: {SearchClient},
+  components: {DeviceFilter, SearchClient},
   data() {
     return {
       client: {name: ""},
@@ -37,7 +42,7 @@ export default {
     createClient() {
       var data = {name: this.client.name};
 
-      FrontDataService.create(data)
+      ServiceClient.create(data)
           .then(this.submitted = true)
           .catch(e => {console.log(e);});
     },
