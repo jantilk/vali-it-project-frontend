@@ -1,17 +1,17 @@
 import http from "../http-common";
 
-class FrontDataService {
+class ServiceClient {
     create(data) {
         return http.post("/client", data);
-    }
-
-    getAll() {
-        return http.get("/client")
     }
 
     clientByName(nameLike) {
         return http.get("clientlike", {params: {nameLike}})
     }
+
+    devicesByClientName(deviceLike) {
+        return http.get("devicelike", {params: {deviceLike}})
+    }
 }
 
-export default new FrontDataService();
+export default new ServiceClient();
