@@ -9,8 +9,12 @@ class ServiceClient {
         return http.get("clientlike", {params: {nameLike}})
     }
 
-    devicesByClientName(deviceLike) {
-        return http.get("devicelike", {params: {deviceLike}})
+    devicesByClientName(deviceLike, productLike, serialNumberLike) {
+        if (deviceLike != "" || productLike != "" || serialNumberLike == "") {
+            return http.get("devicelike", {params: {deviceLike, productLike, serialNumberLike}})
+        } else {
+            return "";
+        }
     }
 }
 

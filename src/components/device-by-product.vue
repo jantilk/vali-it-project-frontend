@@ -2,7 +2,7 @@
   <div>
 
     <div class="row">
-      <input type="text" placeholder="Search by name" v-model="name" @input="devicesByClientName"/>
+      <input type="text" placeholder="Search by product" v-model="name" @input="devicesByClientName"/>
     </div>
 
     <div class="row">
@@ -28,7 +28,7 @@ import ServiceClient from "@/Services/ServiceClient";
 import ServiceDevice from "@/Services/ServiceDevice";
 
 export default {
-  name: "device-filter",
+  name: "device-by-product",
   data() {
     return {
       devices: []
