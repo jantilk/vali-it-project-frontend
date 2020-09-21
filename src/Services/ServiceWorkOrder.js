@@ -19,8 +19,8 @@ class ServiceWorkOrder {
         return http.get("/workOrderStatus", {params: {"status":statusParamWO}})
     }
 
-    findWOspecificId(id) {
-        return http.get("/workOrderById", {params: {"id":id}})
+    findWOspecificId(workOrderId) {
+        return http.get("/workOrderById", {params: {"id":workOrderId}})
     }
 
 

@@ -30,7 +30,7 @@
         <li class="list-group-item" v-for="workOrder in workOrders">
 
           Work Order ID:
-          <button @click="showSpecific" v-model="specificId" class="btn btn-success">{{ workOrder.id }}</button>
+          <button @click="showSpecific(workOrder.id)" class="btn btn-success">{{ workOrder.id }}</button>
           <br>
           Technician ID:
           {{ workOrder.technicianId }}
@@ -61,10 +61,26 @@
 
           <li class="list-group-item" v-for="workOrder in workOrders">
 
-
+            ID:
+            {{ workOrder.id }}
+            <br>
             Technician ID:
             {{ workOrder.technicianId }}
-
+            <br>
+            Work done:
+            {{ workOrder.status }}
+            <br>
+            Device ID:
+            {{ workOrder.deviceId }}
+            <br>
+            Product ID:
+            {{ workOrder.productId }}
+            <br>
+            Consumable ID:
+            {{ workOrder.consumableId }}
+            <br>
+            Job Description:
+            {{ workOrder.jobDescription }}
 
           </li>
         </ul>
@@ -86,7 +102,7 @@ export default {
       anyParamWO: null,
       statusParamWO: null,
       woSelected: false,
-      specificId: null,
+      workOrderId: null,
     };
   },
   methods: {
@@ -111,9 +127,10 @@ export default {
             console.log(e);
           });
     },
-    showSpecific() {
+    showSpecific(workOrderId) {
       this.woSelected = true;
-      ServiceWorkOrder.findWOspecificId(this.specificId)
+      this.workOrderId = workOrderId;
+      ServiceWorkOrder.findWOspecificId(workOrderId)
           .then(response => {
             this.workOrders = response.data;
             // console.log(response.data);
