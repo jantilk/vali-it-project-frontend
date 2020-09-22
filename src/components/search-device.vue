@@ -15,20 +15,16 @@
 
 
     <div class="row">
-      <div class="col-md-12">
         <ul>
           <li v-for="device in devices">
             <a href="#">
               Client:{{device.clientName}}
-              <br>
               Product:{{device.productName}}
-              <br>
-              SN:{{device.serialNumber}} ***
-              <br>
-              Counter:{{device.counter}}</a>
+              SN:{{device.serialNumber}}
+              Counter:{{device.counter}}
+            </a>
           </li>
         </ul>
-      </div>
     </div>
 
   </div>
