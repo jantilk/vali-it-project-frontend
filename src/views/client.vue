@@ -7,8 +7,6 @@
       <button @click="createClient" class="btn btn-success">Create</button>
     </div>
     <div class="row" v-else>
-      <!--TODO add @click to client name that goes to client page-->
-      <!--or TODO after creating client go to that client page-->
       <a href="#">{{client.name}}</a>
       <button class="btn btn-success" @click="newClient">Create another</button>
     </div>
@@ -16,17 +14,14 @@
     <br>
     <search-client></search-client>
 
-    <br>
-    device filter
-    <device-filter></device-filter>
-  </div>
+    </div>
 </template>
 
 <script>
 
 import ServiceClient from "../Services/ServiceClient";
 import SearchClient from "@/components/search-client";
-import DeviceFilter from "@/components/device-by-client";
+import DeviceFilter from "@/components/search-device";
 
 
 export default {

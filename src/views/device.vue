@@ -1,13 +1,7 @@
-<!--<template>-->
-<!--  <div>-->
-<!--    <h2>device</h2>-->
-<!--  </div>-->
-<!--</template>-->
-
 <template>
   <div>
     <div class="row">
-      <device-by-client></device-by-client>
+      <search-device></search-device>
     </div>
 <!--    <div class="submit-form">-->
 <!--      <div v-if="!submitted">-->
@@ -27,16 +21,17 @@
 <!--          <label for="product_id">Product ID</label>-->
 <!--          <input type="number" class="form-control" id="product_id" required v-model="device.productId" name="ProductID">-->
 <!--        </div>-->
-<!--  -->
+
 <!--        <button @click="createDevice" class="btn btn-success">Create</button>-->
 <!--      </div>-->
-<!--  -->
+
 <!--      <div v-else>-->
 <!--        <h4>Device created successfully!</h4>-->
 <!--        <button class="btn btn-success" @click="newDevice">Create another</button>-->
 <!--      </div>-->
 <!--      <br>-->
-<!--      <search-device></search-device>-->
+
+<!--      <search-device-any></search-device-any>-->
 <!--    </div>-->
   </div>
 </template>
@@ -44,14 +39,11 @@
 <script>
 import ServiceDevice from "@/Services/ServiceDevice";
 import SearchDevice from "@/components/search-device";
-import DeviceFilter from "@/components/device-by-client";
-import ClientFilter from "@/components/device-by-product";
-import DeviceByProduct from "@/components/device-by-product";
-import DeviceByClient from "@/components/device-by-client";
+import SearchDeviceAny from "@/components/search-device-any";
 
 export default {
   name: "device",
-  components: {DeviceByClient, DeviceByProduct, ClientFilter, DeviceFilter, SearchDevice},
+  components: {SearchDevice, SearchDeviceAny},
   data() {
     return {
       device: {

@@ -36,7 +36,8 @@ export default {
     key: null
     return {
       clients: [],
-      devices: []
+      devices: [],
+      name: ""
     };
   },
   methods: {

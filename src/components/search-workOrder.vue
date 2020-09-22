@@ -122,7 +122,7 @@ export default {
   methods: {
     searchAnyParamWO() {
       this.statusParamWO = null;
-      if(this.anyParamWO){
+      if (this.anyParamWO) {
         this.woSelected = false;
         ServiceWorkOrder.findByQuery(this.anyParamWO)
             .then(response => {
@@ -132,7 +132,7 @@ export default {
             .catch(e => {
               console.log(e);
             });
-      }else{
+      } else {
         this.workOrders = [];
       }
     },
@@ -171,7 +171,7 @@ export default {
             console.log(e);
           });
     }
-  },
+  }
 };
 </script>
 

@@ -1,51 +1,58 @@
 <template>
-  <div class="list row">
-    <div class="col-md-8">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by any parameter"
-               v-model="anyParam" v-on:input="searchAnyParam"/>
+  <div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <input type="text" placeholder="Search by client" v-model="client" @input="searchDevice"/>
+      </div>
+      <div class="col-md-4">
+        <input type="text" placeholder="Search by product" v-model="product" @input="searchDevice"/>
+      </div>
+      <div class="col-md-4">
+        <input type="text" placeholder="Search by serialNumber" v-model="serialNumber" @input="searchDevice"/>
       </div>
     </div>
 
-    <div class="col-md-6">
-      <h4>Device List</h4>
-      <ul class="list-group">
-        <li class="list-group-item" v-for="device in devices">
-<!--          {{device.id}}-->
-<!--          <br>-->
-            <a href="/workOrder">
-          Client ID:
-          {{device.clientId}}
-          <br>
-          Product ID:
-          {{device.productId}}
-          <br>
-          S/N:
-          {{device.serialNumber}}
-          <br>
-          Counter:
-          {{device.counter}}
-            </a>
-        </li>
-      </ul>
+
+    <div class="row">
+      <div class="col-md-12">
+        <ul>
+          <li v-for="device in devices">
+            <a href="#">
+              Client:{{device.clientName}}
+              <br>
+              Product:{{device.productName}}
+              <br>
+              SN:{{device.serialNumber}} ***
+              <br>
+              Counter:{{device.counter}}</a>
+          </li>
+        </ul>
+      </div>
     </div>
+
   </div>
 </template>
 
 
 <script>
+import ServiceClient from "@/Services/ServiceClient";
 import ServiceDevice from "@/Services/ServiceDevice";
+import client from "@/views/client";
 
 export default {
-  name: "devices",
+  name: "search-device",
   data() {
     return {
       devices: [],
-      anyParam: null
+      client: "",
+      product: "",
+      serialNumber: ""
     };
   },
-  methods: {searchAnyParam() {
-      ServiceDevice.searchAnyParam(this.anyParam)
+  methods: {
+    searchDevice() {
+      ServiceClient.searchDevice(this.client, this.product, this.serialNumber)
           .then(response => {
             this.devices = response.data;
             console.log(response.data);
@@ -54,7 +61,7 @@ export default {
             console.log(e);
           });
     }
-  },
+  }
 };
 </script>
 
