@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="row">
       <search-device></search-device>
+    <div class="row">
     </div>
 <!--    <div class="submit-form">-->
 <!--      <div v-if="!submitted">-->
