@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="row">
       <search-device></search-device>
+    <div class="row">
     </div>
     <div class="submit-form">
       <div v-if="createNewButton">
@@ -35,7 +35,6 @@
         <button class="btn btn-success" @click="createNewDevice">Create</button>
       </div>
       <br>
-
       <search-device-any></search-device-any>
     </div>
   </div>

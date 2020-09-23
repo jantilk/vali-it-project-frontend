@@ -13,18 +13,27 @@
       </div>
     </div>
 
-
+    <br>
     <div class="row">
-        <ul>
-          <li v-for="device in devices">
-            <a href="#">
-              Client:{{device.clientName}}
-              Product:{{device.productName}}
-              SN:{{device.serialNumber}}
-              Counter:{{device.counter}}
-            </a>
-          </li>
-        </ul>
+      <div class="col-md-3">Client</div>
+      <div class="col-md-3">Product</div>
+      <div class="col-md-3">Serial Number</div>
+      <div class="col-md-3">Counter</div>
+    </div>
+
+    <div>
+      <ul class="list-group">
+        <li class="list-group-item" v-for="device in devices">
+          <a href="#">
+            <div class="row">
+              <div class="col-md-3">{{device.clientName}}</div>
+              <div class="col-md-3">{{device.productName}}</div>
+              <div class="col-md-3">{{device.serialNumber}}</div>
+              <div class="col-md-3">{{device.counter}}</div>
+            </div>
+          </a>
+        </li>
+      </ul>
     </div>
 
   </div>
