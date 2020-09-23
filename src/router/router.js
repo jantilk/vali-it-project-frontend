@@ -5,6 +5,8 @@ import CreateClient from "@/views/client";
 
 import Device from '../views/device'
 import workOrder from "@/views/workOrder";
+import Product from "@/views/product";
+import Consumable from "@/views/consumable";
 
 
 Vue.use(VueRouter)
@@ -24,6 +26,16 @@ const routes = [
     path: '/workOrder',
     name: 'workOrder',
     component: workOrder
+  },
+  {
+    path: '/product',
+    name: 'product',
+    component: Product
+  },
+  {
+    path: '/consumable',
+    name: 'consumable',
+    component: Consumable
   }
 ]
 
