@@ -6,8 +6,8 @@
       </div>
       <button @click="createClient" class="btn btn-success">Create</button>
     </div>
-    <div class="row" v-else>
-      <a href="#">{{client.name}}</a>
+    <div v-else>
+      <h4>Client created successfully!</h4>
       <button class="btn btn-success" @click="newClient">Create another</button>
     </div>
 

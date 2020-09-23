@@ -3,36 +3,41 @@
     <div class="row">
       <search-device></search-device>
     </div>
-<!--    <div class="submit-form">-->
-<!--      <div v-if="!submitted">-->
-<!--        <div class="form-group">-->
-<!--          <label for="client_id">Client ID</label>-->
-<!--          <input type="number" class="form-control" id="client_id" required v-model="device.clientId" name="ClientID"/>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--          <label for="sn">Serial Number</label>-->
-<!--          <input type="text" class="form-control" id="sn" required v-model="device.serialNumber" name="SerialNumber">-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--          <label for="counter">Counter</label>-->
-<!--          <input type="number" class="form-control" id="counter" required v-model="device.counter" name="Counter">-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--          <label for="product_id">Product ID</label>-->
-<!--          <input type="number" class="form-control" id="product_id" required v-model="device.productId" name="ProductID">-->
-<!--        </div>-->
+    <div class="submit-form">
+      <div v-if="createNewButton">
+        <div v-if="!submitted">
+          <div class="form-group">
+            <label for="client_id">Client ID</label>
+            <input type="number" class="form-control" id="client_id" required v-model="device.clientId" name="ClientID"/>
+          </div>
+          <div class="form-group">
+            <label for="sn">Serial Number</label>
+            <input type="text" class="form-control" id="sn" required v-model="device.serialNumber" name="SerialNumber">
+          </div>
+          <div class="form-group">
+            <label for="counter">Counter</label>
+            <input type="number" class="form-control" id="counter" required v-model="device.counter" name="Counter">
+          </div>
+          <div class="form-group">
+            <label for="product_id">Product ID</label>
+            <input type="number" class="form-control" id="product_id" required v-model="device.productId" name="ProductID">
+          </div>
 
-<!--        <button @click="createDevice" class="btn btn-success">Create</button>-->
-<!--      </div>-->
+          <button @click="createDevice" class="btn btn-success">Create</button>
+        </div>
+        <div v-else>
+          <h4>Device created successfully!</h4>
+          <button class="btn btn-success" @click="newDevice">Create another</button>
+        </div>
+      </div>
+      <div v-else>
+        <h4>Create a new Device</h4>
+        <button class="btn btn-success" @click="createNewDevice">Create</button>
+      </div>
+      <br>
 
-<!--      <div v-else>-->
-<!--        <h4>Device created successfully!</h4>-->
-<!--        <button class="btn btn-success" @click="newDevice">Create another</button>-->
-<!--      </div>-->
-<!--      <br>-->
-
-<!--      <search-device-any></search-device-any>-->
-<!--    </div>-->
+      <search-device-any></search-device-any>
+    </div>
   </div>
 </template>
 
@@ -53,7 +58,8 @@ export default {
         // counter: null,
         // productId: null,
       },
-      submitted: false
+      submitted: false,
+      createNewButton: false,
     };
   },
   methods: {
@@ -76,6 +82,10 @@ export default {
     },
     newDevice() {
       this.submitted = false;
+      this.device = {};
+    },
+    createNewDevice() {
+      this.createNewButton = true;
       this.device = {};
     },
   }
