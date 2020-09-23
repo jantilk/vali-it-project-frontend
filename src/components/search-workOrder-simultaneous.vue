@@ -2,6 +2,12 @@
   <div>
 
     <div class="row">
+      <div class="col-md-1">
+        <label for="cb">All</label>
+      </div>
+      <div class="col-md-1">
+        <input type="checkbox" id="cb" class="form-control" v-model="searchAllParam" v-on:change="searchAll"/>
+      </div>
       <div class="col-md-2">
         <input type="text" placeholder="Search by client" v-model="clientName" @input="searchWorkOrderSimultaneous"/>
       </div>
@@ -16,15 +22,19 @@
                @input="searchWorkOrderSimultaneous"/>
       </div>
 
-      <div class="col-md-3">
-        All work orders
-        <input type="radio" v-model="statusParamSimultaneous" v-on:change="searchWorkOrderSimultaneous">
+      <div class="col-md-2">
+        Done
+        <input type="radio" v-model="statusParamSimultaneous" @click="" v-on:change="searchWorkOrderSimultaneous"
+               value=true>
         <br>
-        Work order done
-        <input type="radio" v-model="statusParamSimultaneous" v-on:change="searchWorkOrderSimultaneous" value=true>
+        Not done
+        <input type="radio" v-model="statusParamSimultaneous" @click="this.searchAllParam=null"
+               v-on:change="searchWorkOrderSimultaneous" value=false>
         <br>
-        Work order not done
-        <input type="radio" v-model="statusParamSimultaneous" v-on:change="searchWorkOrderSimultaneous" value=false>
+        Both
+        <input type="radio" v-model="statusParamSimultaneous" @click="this.searchAllParam=null"
+               v-on:change="searchWorkOrderSimultaneous">
+
       </div>
 
 
@@ -75,11 +85,13 @@ export default {
       sn: "",
       technicianName: "",
       clientName: "",
+      searchAllParam: null,
       statusParamSimultaneous: null
     };
   },
   methods: {
     searchWorkOrderSimultaneous() {
+      this.searchAllParam = null
       if (this.clientName === "" && this.sn === "" && this.productName === "" && this.technicianName === "" && this.statusParamSimultaneous === null) {
         this.workOrders = []
       } else {
@@ -92,6 +104,22 @@ export default {
             .catch(e => {
               console.log(e);
             });
+      }
+    },
+    searchAll() {
+      if (this.searchAllParam) {
+        this.statusParamSimultaneous = null;
+        ServiceWorkOrder.findAllWo()
+            .then(response => {
+              this.workOrders = response.data;
+              // console.log(response.data);
+            })
+            .catch(e => {
+              console.log(e);
+            });
+      } else {
+        this.workOrders = [];
+        this.statusParamSimultaneous = null;
       }
     }
   }
