@@ -44,7 +44,8 @@ export default {
       anyParam: null
     };
   },
-  methods: {searchAnyParam() {
+  methods: {
+    searchAnyParam() {
       ServiceDevice.searchAnyParam(this.anyParam)
           .then(response => {
             this.devices = response.data;
