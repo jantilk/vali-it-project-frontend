@@ -1,12 +1,11 @@
 <template>
   <div>
 
-    <div class="row">
-      <div class="col-md-1">
-        <label for="cb">All</label>
-      </div>
-      <div class="col-md-1">
-        <input type="checkbox" id="cb" class="form-control" v-model="searchAllParam" v-on:change="searchAll"/>
+    <div class="row col-md-12">
+
+      <div class="col-md-0">
+        Search all
+        <input type="checkbox" id="cb" class="shrink mr-2 mt-2" v-model="searchAllParam" v-on:change="searchAll"/>
       </div>
       <div class="col-md-2">
         <input type="text" placeholder="Search by client" v-model="clientName" @input="searchWorkOrderSimultaneous"/>
@@ -20,25 +19,28 @@
       <div class="col-md-2">
         <input type="text" placeholder="Search by technician" v-model="technicianName"
                @input="searchWorkOrderSimultaneous"/>
-      </div>
 
-      <div class="col-md-2">
+    </div>
+    </div>
+
+    <div align="center" class="row">
+      <div class="col-md-12">
         Done
         <input type="radio" v-model="statusParamSimultaneous" @click="" v-on:change="searchWorkOrderSimultaneous"
                value=true>
-        <br>
+
         Not done
         <input type="radio" v-model="statusParamSimultaneous" @click="this.searchAllParam=null"
                v-on:change="searchWorkOrderSimultaneous" value=false>
-        <br>
+
         Both
         <input type="radio" v-model="statusParamSimultaneous" @click="this.searchAllParam=null"
                v-on:change="searchWorkOrderSimultaneous">
-
+      </div>
       </div>
 
 
-    </div>
+
 
     <br>
     <div class="row">
