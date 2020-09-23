@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="col-md-4">
-        <input type="text" placeholder="Search by client" v-model="client" @input="searchDevice"/>
+        <input id="" type="text" placeholder="Search by client" v-model="client" @input="searchDevice"/>
       </div>
       <div class="col-md-4">
         <input type="text" placeholder="Search by product" v-model="product" @input="searchDevice"/>
@@ -57,14 +57,18 @@ export default {
   },
   methods: {
     searchDevice() {
-      ServiceClient.searchDevice(this.client, this.product, this.serialNumber)
-          .then(response => {
-            this.devices = response.data;
-            console.log(response.data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
+      if (this.client == "" && this.product == "" && this.serialNumber == "") {
+        return this.devices = [];
+      } else {
+        ServiceClient.searchDevice(this.client, this.product, this.serialNumber)
+            .then(response => {
+              this.devices = response.data;
+              console.log(response.data);
+            })
+            .catch(e => {
+              console.log(e);
+            });
+      }
     }
   }
 };
