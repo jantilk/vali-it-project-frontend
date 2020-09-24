@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mobile-wo></mobile-wo>
+    <mobile-wo/>
   </div>
 </template>
 
