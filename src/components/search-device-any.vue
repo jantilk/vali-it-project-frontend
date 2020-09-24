@@ -11,9 +11,10 @@
       <h4>Device List</h4>
       <ul class="list-group">
         <li class="list-group-item" v-for="device in devices">
-<!--          {{device.id}}-->
-<!--          <br>-->
-            <a href="/workOrder">
+          <router-link :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.id, product: device.productId }}">
+              ID:
+              {{device.id}}
+              <br>
           Client ID:
           {{device.clientId}}
           <br>
@@ -25,7 +26,7 @@
           <br>
           Counter:
           {{device.counter}}
-            </a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -57,6 +58,7 @@ export default {
     }
   },
 };
+
 </script>
 
 <style scoped>

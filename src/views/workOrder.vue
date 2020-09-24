@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
           <label for="deviceId">Device ID</label>
-          <input type="number" class="form-control" id="deviceId" required v-model="workOrder.deviceId"
+          <input type="number" class="form-control" id="deviceId" required v-model="this.workOrder.deviceId"
                  name="deviceId"/>
         </div>
         <div class="form-group">
@@ -80,8 +80,14 @@ export default {
     return {
       workOrder: {anyParam: null},
       submitted: false,
-      selectedCreate: false
+      selectedCreate: false,
+      // testV: {name: "asdf"}
     };
+  },
+  mounted() {
+    this.workOrder = {}
+    this.workOrder.deviceId = this.$route.params.id;
+    this.workOrder.productId = this.$route.params.product;
   },
   methods: {
     createWorkOrder() {
@@ -108,7 +114,6 @@ export default {
 
     startCreatingWorkOrder() {
       this.selectedCreate = true;
-      this.workOrder = {};
     }
   }
 };

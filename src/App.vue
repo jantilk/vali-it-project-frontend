@@ -17,7 +17,6 @@
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-light.png"
           width="100"
         />
-
         <div class="d-none d-sm-flex" style="margin-left: 20px">
           <router-link to="client">Client</router-link> |
           <router-link to="/device">Device</router-link> |

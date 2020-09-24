@@ -61,6 +61,10 @@ export default {
       createNewButton: false,
     };
   },
+  mounted() {
+    this.device = {}
+    this.device.clientId = this.$route.params.id;
+  },
   methods: {
     createDevice() {
       let data = {
@@ -85,7 +89,6 @@ export default {
     },
     createNewDevice() {
       this.createNewButton = true;
-      this.device = {};
     },
   }
 };
