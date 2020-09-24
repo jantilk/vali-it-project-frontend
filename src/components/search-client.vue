@@ -7,18 +7,20 @@
       <div class="col-sm-4">
         <ul>
           <li v-for="client in clients">
-            <a href="#" @click="deviceByClientId(client.id)">{{client.id}} - {{ client.name }}</a>
+            <router-link :to="{ path: '/device', name: 'clientDevice', params: { id: client.id }}">
+              ID: {{client.id}}, {{ client.name }}
+            </router-link>
           </li>
         </ul>
       </div>
 
-      <div class="col-sm-8">
-        <ul>
-          <li v-for="device in devices">
-            {{device}}
-          </li>
-        </ul>
-      </div>
+<!--      <div class="col-sm-8">-->
+<!--        <ul>-->
+<!--          <li v-for="device in devices">-->
+<!--            {{device}}-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
 
     </div>
 

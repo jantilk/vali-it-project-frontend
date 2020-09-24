@@ -24,14 +24,14 @@
     <div>
       <ul class="list-group">
         <li class="list-group-item" v-for="device in devices">
-          <a href="#">
+          <router-link :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.deviceId, product: device.productId }}">
             <div class="row">
               <div class="col-md-3">{{device.clientName}}</div>
               <div class="col-md-3">{{device.productName}}</div>
               <div class="col-md-3">{{device.serialNumber}}</div>
               <div class="col-md-3">{{device.counter}}</div>
             </div>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     searchDevice() {
-      ServiceClient.searchDevice(this.client, this.product, this.serialNumber)
+      ServiceDevice.searchDevice(this.client, this.product, this.serialNumber)
           .then(response => {
             this.devices = response.data;
             console.log(response.data);
