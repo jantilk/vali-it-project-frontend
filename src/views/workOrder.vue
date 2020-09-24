@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="submit-form">
     <div v-if="selectedCreate">
       <div v-if="!submitted">
@@ -51,8 +52,17 @@
     </div>
     <br>
 
+
     <div class="form-group">
       <search-workOrder></search-workOrder>
+    </div>
+
+
+
+
+  </div>
+    <div class="form-group">
+      <search-work-order-simultaneous></search-work-order-simultaneous>
     </div>
   </div>
 </template>
@@ -61,10 +71,11 @@
 import ServiceWorkOrder from "../Services/ServiceWorkOrder";
 //import AllWorkOrders from "@/components/all-workOrders";
 import SearchWorkOrder from "@/components/search-workOrder";
+import SearchWorkOrderSimultaneous from "@/components/search-workOrder-simultaneous";
 
 export default {
   name: "workOrder",
-  components: {SearchWorkOrder},
+  components: {SearchWorkOrderSimultaneous, SearchWorkOrder},
   data() {
     return {
       workOrder: {anyParam: null},

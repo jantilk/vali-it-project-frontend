@@ -23,9 +23,19 @@ class ServiceWorkOrder {
         return http.get("/workOrderById", {params: {"id":workOrderId}})
     }
 
-    findWorkOrderConsumable(workOrderId){
-        return http.get("/workOrderById", {params: {"id":workOrderId}})
+    searchWorkOrderSimultaneous(client, serialNumber, product, technician, status){
+        return http.get("/workOrderSimultaneousSearch", {params: {client, "device":serialNumber, product, technician, status}})
     }
+
+    findAllWo(){
+        return http.get("/workOrderAll")
+    }
+
+
+
+    // findWorkOrderConsumable(workOrderId){
+    //     return http.get("/workOrderById", {params: {"id":workOrderId}})
+    // }
 
 
 }
