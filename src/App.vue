@@ -41,6 +41,7 @@
 </template>
 
 <script>
+
 import Mobile from "@/views/mobile";
 
 export default {
