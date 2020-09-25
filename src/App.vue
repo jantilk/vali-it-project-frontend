@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+
 import Mobile from "@/views/mobile";
 
 export default {
@@ -49,7 +49,7 @@ export default {
 
   components: {
     Mobile,
-    HelloWorld,
+    // HelloWorld,
   },
 
   data: () => ({
