@@ -58,7 +58,7 @@ export default {
   methods: {
     searchDevice() {
       if (this.client == "" && this.product == "" && this.serialNumber == "") {
-        return this.devices = [];
+        this.devices = [];
       } else {
         ServiceClient.searchDevice(this.client, this.product, this.serialNumber)
             .then(response => {

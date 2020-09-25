@@ -18,7 +18,7 @@
           width="100"
         />
         <div class="d-none d-sm-flex" style="margin-left: 20px">
-          <router-link to="client">Client</router-link> |
+          <router-link to="/client">Client</router-link> |
           <router-link to="/device">Device</router-link> |
           <router-link to="/workOrder">Work order</router-link> |
           <router-link to="/product">Product</router-link> |
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 import Mobile from "@/views/mobile";
 
 export default {
@@ -49,7 +48,6 @@ export default {
 
   components: {
     Mobile,
-    HelloWorld,
   },
 
   data: () => ({

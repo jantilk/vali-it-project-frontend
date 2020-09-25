@@ -47,14 +47,18 @@ export default {
   },
   methods: {
     searchAnyParam() {
-      ServiceDevice.searchAnyParam(this.anyParam)
-          .then(response => {
-            this.devices = response.data;
-            console.log(response.data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
+      if (this.anyParam == "") {
+        this.devices = [];
+      } else {
+        ServiceDevice.searchAnyParam(this.anyParam)
+            .then(response => {
+              this.devices = response.data;
+              console.log(response.data);
+            })
+            .catch(e => {
+              console.log(e);
+            });
+      }
     }
   },
 };

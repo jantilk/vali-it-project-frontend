@@ -7,7 +7,7 @@
       <div class="col-sm-4">
         <ul>
           <li v-for="client in clients">
-            <router-link :to="{ path: '/device', name: 'clientDevice', params: { id: client.id }}">
+            <router-link :to="{ path: '/device', name: 'clientDevice', params: { id: client.name }}">
               ID: {{client.id}}, {{ client.name }}
             </router-link>
           </li>
