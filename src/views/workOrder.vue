@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
           <label for="deviceId">Device ID</label>
-          <input type="number" class="form-control" id="deviceId" required v-model="this.workOrder.deviceId"
+          <input type="number" class="form-control" id="deviceId" required v-model="workOrder.deviceId"
                  name="deviceId"/>
         </div>
         <div class="form-group">
