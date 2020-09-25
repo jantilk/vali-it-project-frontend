@@ -2,7 +2,7 @@ import http from "../http-common";
 
 class ServiceDevice {
     createDevice(data) {
-        return http.post("/device", data);
+        return http.post("/device", null, {params: data});
     }
 
     deviceByClientId(clientId) {

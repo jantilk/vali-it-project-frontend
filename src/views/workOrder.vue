@@ -9,6 +9,7 @@
                  name="jobDescription"/>
         </div>
         <div class="form-group">
+
           <label for="deviceName">Device name (TODO: currently ID!!!)</label>
           <input type="number" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
                  name="deviceName"/>

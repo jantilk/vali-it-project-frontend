@@ -7,20 +7,20 @@
       <div v-if="createNewButton">
         <div v-if="!submitted">
           <div class="form-group">
-            <label for="client_id">Client ID</label>
-            <input type="number" class="form-control" id="client_id" required v-model="device.clientId" name="ClientID"/>
+            <label for="clientName">Client Name</label>
+            <input type="text" class="form-control" id="clientName" required v-model="device.client" name="client"/>
           </div>
           <div class="form-group">
             <label for="sn">Serial Number</label>
-            <input type="text" class="form-control" id="sn" required v-model="device.serialNumber" name="SerialNumber">
+            <input type="text" class="form-control" id="sn" required v-model="device.sn" name="sn">
           </div>
           <div class="form-group">
             <label for="counter">Counter</label>
-            <input type="number" class="form-control" id="counter" required v-model="device.counter" name="Counter">
+            <input type="number" class="form-control" id="counter" required v-model="device.counter" name="counter">
           </div>
           <div class="form-group">
-            <label for="product_id">Product ID</label>
-            <input type="number" class="form-control" id="product_id" required v-model="device.productId" name="ProductID">
+            <label for="productName">Product Name</label>
+            <input type="text" class="form-control" id="productName" required v-model="device.product" name="product">
           </div>
 
           <button @click="createDevice" class="btn btn-success">Create</button>
@@ -52,10 +52,10 @@ export default {
     return {
       device: {
         anyParam: null
-        // clientId: null,
-        // serialNumber: "",
+        // client: "",
+        // sn: "",
         // counter: null,
-        // productId: null,
+        // product: "",
       },
       submitted: false,
       createNewButton: false,
@@ -63,16 +63,15 @@ export default {
   },
   mounted() {
     this.device = {}
-    this.device.clientId = this.$route.params.id;
+    this.device.client = this.$route.params.id;
   },
   methods: {
     createDevice() {
       let data = {
-        // id: null,
-        clientId: this.device.clientId,
-        serialNumber: this.device.serialNumber,
+        client: this.device.client,
+        sn: this.device.sn,
         counter: this.device.counter,
-        productId: this.device.productId,
+        product: this.device.product,
       };
       ServiceDevice.createDevice(data)
           .then(this.submitted = true)
