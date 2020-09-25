@@ -12,6 +12,10 @@ class ServiceDevice {
     searchAnyParam(anyParam) {
         return http.get("/device", {params: {"query": anyParam}});
     }
+
+    deviceByDeviceName(deviceName) {
+        return http.get("/devicename", {params: {"query": deviceName}});
+    }
 }
 
 export default new ServiceDevice();

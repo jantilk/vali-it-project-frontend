@@ -42,15 +42,13 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 import Mobile from "@/views/mobile";
 
 export default {
   name: 'App',
 
   components: {
-    Mobile,
-    HelloWorld,
+    Mobile
   },
 
   data: () => ({
