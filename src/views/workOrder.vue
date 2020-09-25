@@ -9,27 +9,28 @@
                  name="jobDescription"/>
         </div>
         <div class="form-group">
-          <label for="deviceId">Device ID</label>
-          <input type="number" class="form-control" id="deviceId" required v-model="workOrder.deviceId"
-                 name="deviceId"/>
+
+          <label for="deviceName">Device name (TODO: currently ID!!!)</label>
+          <input type="number" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
+                 name="deviceName"/>
         </div>
         <div class="form-group">
-          <label for="technicianId">Technician ID</label>
-          <input type="number" class="form-control" id="technicianId" required v-model="workOrder.technicianId"
-                 name="technicianId"/>
+          <label for="technicianName">Technician name</label>
+          <input type="text" class="form-control" id="technicianName" required v-model="workOrder.technicianName"
+                 name="technicianName"/>
         </div>
         <div class="form-group">
-          <label for="productId">Product ID</label>
-          <input type="number" class="form-control" id="productId" required v-model="workOrder.productId"
-                 name="productId"/>
+          <label for="productName">Product name</label>
+          <input type="text" class="form-control" id="productName" required v-model="workOrder.productName"
+                 name="productName"/>
         </div>
         <div class="form-group">
-          <label for="consumableId">Consumable ID</label>
-          <input type="number" class="form-control" id="consumableId" required v-model="workOrder.consumableId"
-                 name="consumableId"/>
+          <label for="consumableName">Consumable name</label>
+          <input type="text" class="form-control" id="consumableName" required v-model="workOrder.consumableName"
+                 name="consumableName"/>
         </div>
         <div class="form-group">
-          <label for="status">Work order completed </label>
+          <label for="status">Work order completed</label>
           <input align="left" type="checkbox" class="form-control" id="status" required v-model="workOrder.status"
                  name="status"/>
         </div>
@@ -80,17 +81,23 @@ export default {
     return {
       workOrder: {anyParam: null},
       submitted: false,
-      selectedCreate: false
+      selectedCreate: false,
+      // testV: {name: "asdf"}
     };
+  },
+  mounted() {
+    this.workOrder = {}
+    this.workOrder.deviceId = this.$route.params.id;
+    // this.workOrder.productId = this.$route.params.product;
   },
   methods: {
     createWorkOrder() {
       let data = {
         jobDescription: this.workOrder.jobDescription,
         deviceId: this.workOrder.deviceId,
-        technicianId: this.workOrder.technicianId,
-        consumableId: this.workOrder.consumableId,
-        productId: this.workOrder.productId,
+        technicianName: this.workOrder.technicianName,
+        consumableName: this.workOrder.consumableName,
+        productName: this.workOrder.productName,
         status: this.workOrder.status,
       };
 
@@ -108,7 +115,6 @@ export default {
 
     startCreatingWorkOrder() {
       this.selectedCreate = true;
-      this.workOrder = {};
     }
   }
 };

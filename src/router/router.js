@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import CreateClient from "@/views/client";
+import Client from "@/views/client";
 
 import Device from '../views/device'
 import workOrder from "@/views/workOrder";
@@ -15,12 +15,22 @@ const routes = [
   {
     path: '/client',
     name: 'client',
-    component: CreateClient
+    component: Client
+  },
+  {
+    path: '/device/:id',
+    name: 'clientDevice',
+    component: Device
   },
   {
     path: '/device',
     name: 'device',
     component: Device
+  },
+  {
+    path: '/workOrder/:id',
+    name: 'deviceWorkOrder',
+    component: workOrder
   },
   {
     path: '/workOrder',

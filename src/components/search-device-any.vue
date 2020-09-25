@@ -11,9 +11,10 @@
       <h4>Device List</h4>
       <ul class="list-group">
         <li class="list-group-item" v-for="device in devices">
-<!--          {{device.id}}-->
-<!--          <br>-->
-            <a href="/workOrder">
+          <router-link :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.id, product: device.productId }}">
+              ID:
+              {{device.id}}
+              <br>
           Client ID:
           {{device.clientId}}
           <br>
@@ -25,7 +26,7 @@
           <br>
           Counter:
           {{device.counter}}
-            </a>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -46,17 +47,22 @@ export default {
   },
   methods: {
     searchAnyParam() {
-      ServiceDevice.searchAnyParam(this.anyParam)
-          .then(response => {
-            this.devices = response.data;
-            console.log(response.data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
+      if (this.anyParam == "") {
+        this.devices = [];
+      } else {
+        ServiceDevice.searchAnyParam(this.anyParam)
+            .then(response => {
+              this.devices = response.data;
+              console.log(response.data);
+            })
+            .catch(e => {
+              console.log(e);
+            });
+      }
     }
   },
 };
+
 </script>
 
 <style scoped>
