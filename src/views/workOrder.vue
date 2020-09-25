@@ -11,7 +11,7 @@
         <div class="form-group">
 
           <label for="deviceName">Device name (TODO: currently ID!!!)</label>
-          <input type="number" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
+          <input type="text" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
                  name="deviceName"/>
         </div>
         <div class="form-group">
@@ -87,14 +87,14 @@ export default {
   },
   mounted() {
     this.workOrder = {}
-    this.workOrder.deviceId = this.$route.params.id;
-    // this.workOrder.productId = this.$route.params.product;
+    this.workOrder.deviceName = this.$route.params.id;
+    this.workOrder.productName = this.$route.params.product;
   },
   methods: {
     createWorkOrder() {
       let data = {
         jobDescription: this.workOrder.jobDescription,
-        deviceId: this.workOrder.deviceId,
+        deviceName: this.workOrder.deviceName,
         technicianName: this.workOrder.technicianName,
         consumableName: this.workOrder.consumableName,
         productName: this.workOrder.productName,
