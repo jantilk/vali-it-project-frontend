@@ -41,14 +41,13 @@
 </template>
 
 <script>
-
 import Mobile from "@/views/mobile";
 
 export default {
   name: 'App',
 
   components: {
-    Mobile,
+    Mobile
   },
 
   data: () => ({

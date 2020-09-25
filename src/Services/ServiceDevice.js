@@ -13,8 +13,13 @@ class ServiceDevice {
         return http.get("/device", {params: {"query": anyParam}});
     }
 
+
+    deviceByDeviceName(deviceName) {
+        return http.get("/devicename", {params: {"query": deviceName}});
+
     searchDevice(clientLike, productLike, serialNumberLike) {
         return http.get("devicelike", {params: {clientLike, productLike, serialNumberLike}});
+
     }
 }
 
