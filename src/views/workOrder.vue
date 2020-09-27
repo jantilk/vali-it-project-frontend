@@ -10,9 +10,9 @@
         </div>
         <div class="form-group">
 
-          <label for="deviceName">Device name (TODO: currently ID!!!)</label>
-          <input type="text" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
-                 name="deviceName"/>
+          <label for="deviceId">Device name (TODO: currently ID!!!)</label>
+          <input type="number" class="form-control" id="deviceId" required v-model="workOrder.deviceId"
+                 name="deviceId"/>
         </div>
         <div class="form-group">
           <label for="technicianName">Technician name</label>
@@ -28,6 +28,9 @@
           <label for="consumableName">Consumable name</label>
           <input type="text" class="form-control" id="consumableName" required v-model="workOrder.consumableName"
                  name="consumableName"/>
+
+          <button @click="consumableAddOne()" class="btn btn-success">Add 1</button>
+          <span >Consumable quantity: {{this.consumableAmount}}</span>
         </div>
         <div class="form-group">
           <label for="status">Work order completed</label>
@@ -82,6 +85,7 @@ export default {
       workOrder: {anyParam: null},
       submitted: false,
       selectedCreate: false,
+      consumableAmount:0,
       // testV: {name: "asdf"}
     };
   },
@@ -94,23 +98,28 @@ export default {
     createWorkOrder() {
       let data = {
         jobDescription: this.workOrder.jobDescription,
-        deviceName: this.workOrder.deviceName,
+        deviceId: this.workOrder.deviceId,
         technicianName: this.workOrder.technicianName,
         consumableName: this.workOrder.consumableName,
         productName: this.workOrder.productName,
         status: this.workOrder.status,
       };
 
-      ServiceWorkOrder.create(data)
+      ServiceWorkOrder.create(data,this.consumableAmount)
           .then(this.submitted = true)
           .catch(e => {
             console.log(e);
           });
+      this.consumableAmount=0;
     },
 
     newWorkOrder() {
       this.submitted = false;
       this.workOrder = {};
+    },
+
+    consumableAddOne() {
+      this.consumableAmount = this.consumableAmount+1;
     },
 
     startCreatingWorkOrder() {
