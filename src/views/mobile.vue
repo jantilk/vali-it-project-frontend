@@ -1,14 +1,19 @@
 <template>
   <div>
-    <mobile-wo/>
+    <v-container>
+      <v-row>
+        <autocomplete-wo></autocomplete-wo>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
-import MobileWo from "@/mobile/mobile-wo";
+import AutocompleteWo from "@/mobile/autocomplete-wo";
+
 export default {
   name: "mobile",
-  components: {MobileWo}
+  components: {AutocompleteWo}
 }
 </script>
 
