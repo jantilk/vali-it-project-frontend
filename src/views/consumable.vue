@@ -53,11 +53,12 @@ export default {
         name: this.consumable.name,
         stock: this.consumable.stock
       };
+      if (this.consumable.name != null && this.consumable.name != ""){
       ServiceConsumable.createConsumable(data)
             .then(this.submitted = true)
             .then(response => console.log(response.data))
             .catch(e => {console.log(e);});
-    },
+    }},
     newConsumable() {
       this.submitted = false;
       this.consumable = {};
