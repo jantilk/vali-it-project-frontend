@@ -1,8 +1,9 @@
 <template>
     <v-container>
       <autocomplete-client/>
-      <autocomplete-technician/>
       <autocomplete-device/>
+      <br/>
+      <autocomplete-technician/>
     </v-container>
 </template>
 

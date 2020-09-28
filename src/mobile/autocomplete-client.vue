@@ -31,7 +31,10 @@ export default {
       itemsClient: [],
       searchClient: null,
       selectClient: null,
+      clientId: null
     }
+  },
+  computed: {
   },
   watch: {
     searchClient (inputClient) {

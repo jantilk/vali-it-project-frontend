@@ -6,8 +6,8 @@
           <v-autocomplete
               v-model="selectDevice"
               :items="itemsDevice"
-              :item-text="getDeviceName"
-              :item-value="getDeviceId"
+              :item-text="getName"
+              :item-value="getId"
               :search-input.sync="searchDevice"
               class="mx-4"
               flat
@@ -34,6 +34,8 @@ export default {
       selectDevice: null
     }
   },
+  computed: {
+  },
   watch: {
     searchDevice (queryString) {
       if (this.searchDevice == "") {
@@ -49,22 +51,23 @@ export default {
     searchDeviceNamelike (queryString) {
       ServiceDevice.searchDeviceNamelike(queryString)
           .then(response => {
-            this.itemsDevice = response.data;
+            this.itemsDevice = response.data
+            // filters only chosen client's devices
+            if (this.searchClient == null) {
+              //todo kas võib nii tühjaks jätta või peab returnima?
+            } else {
+              this.itemsDevice = this.itemsDevice.filter(item => (item.clientId == this.clientId))
+            }
           })
           .catch(e => {console.log(e);});
       console.log(this.itemsDevice);
     },
-    getDeviceName: function(el){
-      return el.deviceName;
+    getName: function(el){
+      return el.name;
     },
-    getDeviceId: function(el){
-      return el.deviceId;
-    },
+    getId: function(el){
+      return el.id;
+    }
   }
 }
-// if (this.searchClient == null) {
-//   //todo kas võib nii tühjaks jätta või peab returnima?
-// } else {
-//   this.itemsDevice = this.itemsDevice.filter(item => (item.clientId == this.clientId))
-// }
 </script>
