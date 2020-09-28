@@ -14,23 +14,25 @@
       </div>
     </div>
 
-    <ul class="list-group">
-      <div v-if="client || product || serialNumber" class="row">
-        <div class="col-md-4">Client</div>
-        <div class="col-md-4">Device Name</div>
-        <div class="col-md-4">Counter</div>
-      </div>
-      <li v-for="device in devices" class="list-group-item">
-        <router-link
-            :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.name, product: device.productName }}">
-          <div class="row">
-            <div class="col-md-4">{{ device.clientName }}</div>
-            <div class="col-md-4">{{ device.name }}</div>
-            <div class="col-md-4">{{ device.counter }}</div>
-          </div>
-        </router-link>
-      </li>
-    </ul>
+    <div>
+      <ul class="list-group">
+        <div class="row" v-if="client || product || serialNumber" >
+          <div class="col-md-4">Client</div>
+          <div class="col-md-4">Device Name</div>
+          <div class="col-md-4">Counter</div>
+        </div>
+        <li v-for="device in devices" class="list-group-item">
+          <router-link
+              :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: {deviceName: device.name}}">
+            <div class="row">
+              <div class="col-md-4">{{ device.clientName }}</div>
+              <div class="col-md-4">{{ device.name }}</div>
+              <div class="col-md-4">{{ device.counter }}</div>
+            </div>
+          </router-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -45,7 +47,7 @@ export default {
       devices: [],
       client: "",
       product: "",
-      serialNumber: ""
+      serialNumber: "",
     };
   },
   methods: {
