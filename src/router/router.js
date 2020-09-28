@@ -28,7 +28,7 @@ const routes = [
     component: Device
   },
   {
-    path: '/workOrder/:id',
+    path: '/workOrder/:deviceName',
     name: 'deviceWorkOrder',
     component: workOrder
   },
