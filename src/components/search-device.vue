@@ -3,13 +3,13 @@
 
     <div class="row">
       <div class="col-md-4">
-        <input id="" v-model="client" placeholder="Search by client" type="text" @input="searchDevice"/>
+        <input id="" v-model="client" placeholder="Search by Client" type="text" @input="searchDevice"/>
       </div>
       <div class="col-md-4">
-        <input v-model="product" placeholder="Search by product" type="text" @input="searchDevice"/>
+        <input v-model="product" placeholder="Search by Product" type="text" @input="searchDevice"/>
       </div>
       <div class="col-md-4">
-        <input v-model="serialNumber" placeholder="Search by serialNumber" type="text" @input="searchDevice"/>
+        <input v-model="serialNumber" placeholder="Search by S/N" type="text" @input="searchDevice"/>
       </div>
     </div>
     <div>
