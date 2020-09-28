@@ -10,10 +10,17 @@
         </div>
         <div class="form-group">
 
-          <label for="deviceId">Device name (TODO: currently ID!!!)</label>
-          <input type="number" class="form-control" id="deviceId" required v-model="workOrder.deviceId"
-                 name="deviceId"/>
+          <label for="deviceName">Device name</label>
+          <input type="text" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
+                 name="deviceName"/>
+
         </div>
+
+
+
+
+
+
         <div class="form-group">
           <label for="technicianName">Technician name</label>
           <input type="text" class="form-control" id="technicianName" required v-model="workOrder.technicianName"
@@ -73,32 +80,38 @@
 
 <script>
 import ServiceWorkOrder from "../Services/ServiceWorkOrder";
+import ServiceDevice from "@/Services/ServiceDevice";
 //import AllWorkOrders from "@/components/all-workOrders";
 import SearchWorkOrder from "@/components/search-workOrder";
 import SearchWorkOrderSimultaneous from "@/components/search-workOrder-simultaneous";
+import AutocompleteDevice from "@/mobile/autocomplete-device";
 
 export default {
   name: "workOrder",
-  components: {SearchWorkOrderSimultaneous, SearchWorkOrder},
+
+  components: {AutocompleteDevice, SearchWorkOrderSimultaneous, SearchWorkOrder},
   data() {
     return {
       workOrder: {anyParam: null},
       submitted: false,
       selectedCreate: false,
       consumableAmount:0,
+      itemsDevice: [],
+      searchDevice: null,
+      selectDevice: null
       // testV: {name: "asdf"}
     };
   },
   mounted() {
     this.workOrder = {}
-    this.workOrder.deviceName = this.$route.params.id;
+    this.workOrder.deviceName = this.$route.params.deviceName;
     this.workOrder.productName = this.$route.params.product;
   },
   methods: {
     createWorkOrder() {
       let data = {
         jobDescription: this.workOrder.jobDescription,
-        deviceId: this.workOrder.deviceId,
+        deviceName: this.workOrder.deviceName,
         technicianName: this.workOrder.technicianName,
         consumableName: this.workOrder.consumableName,
         productName: this.workOrder.productName,
