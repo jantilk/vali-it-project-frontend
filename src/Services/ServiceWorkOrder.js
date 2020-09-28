@@ -1,8 +1,9 @@
 import http from "../http-common";
 
 class ServiceWorkOrder {
-    create(data, consumableAmount) {
-        return http.post("/createWO", data, {params: {"consumableAmount":consumableAmount}});
+    create(data, consumableAmount, consumableName2, consumableAmount2, consumableName3, consumableAmount3) {
+        return http.post("/createWO", data, {params: {"consumableAmount":consumableAmount, "consumable2":consumableName2,
+                "consumableAmount2":consumableAmount2, "consumable3":consumableName3, "consumableAmount3":consumableAmount3}});
     }
     // getAll() {
     //     return http.get("/device")

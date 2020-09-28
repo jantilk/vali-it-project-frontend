@@ -21,7 +21,7 @@
         </div>
         <li v-for="device in devices" class="list-group-item">
           <router-link
-              :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { deviceName: device.name, product: device.productName }}">
+              :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: {deviceName: device.name}}">
             <div class="row">
               <div class="col-md-4">{{ device.clientName }}</div>
               <div class="col-md-4">{{ device.name }}</div>
@@ -46,7 +46,7 @@ export default {
       devices: [],
       client: "",
       product: "",
-      serialNumber: ""
+      serialNumber: "",
     };
   },
   methods: {
