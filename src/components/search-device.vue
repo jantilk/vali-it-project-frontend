@@ -3,18 +3,18 @@
 
     <div class="row">
       <div class="col-md-4">
-        <input id="" type="text" placeholder="Search by client" v-model="client" @input="searchDevice"/>
+        <input id="" v-model="client" placeholder="Search by client" type="text" @input="searchDevice"/>
       </div>
       <div class="col-md-4">
-        <input type="text" placeholder="Search by product" v-model="product" @input="searchDevice"/>
+        <input v-model="product" placeholder="Search by product" type="text" @input="searchDevice"/>
       </div>
       <div class="col-md-4">
-        <input type="text" placeholder="Search by serialNumber" v-model="serialNumber" @input="searchDevice"/>
+        <input v-model="serialNumber" placeholder="Search by serialNumber" type="text" @input="searchDevice"/>
       </div>
     </div>
 
     <br>
-    <div class="row">
+    <div class="row" v-if="client || product || serialNumber" >
       <div class="col-md-3">Client</div>
       <div class="col-md-3">Product</div>
       <div class="col-md-3">Serial Number</div>
@@ -23,13 +23,15 @@
 
     <div>
       <ul class="list-group">
-        <li class="list-group-item" v-for="device in devices">
-          <router-link :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.productName + ' - ' + device.serialNumber, product: device.productName }}">
+
+        <li v-for="device in devices" class="list-group-item">
+          <router-link
+              :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.productName + ' - ' + device.serialNumber, product: device.productName }}">
             <div class="row">
-              <div class="col-md-3">{{device.clientName}}</div>
-              <div class="col-md-3">{{device.productName}}</div>
-              <div class="col-md-3">{{device.serialNumber}}</div>
-              <div class="col-md-3">{{device.counter}}</div>
+              <div class="col-md-3">{{ device.clientName }}</div>
+              <div class="col-md-3">{{ device.productName }}</div>
+              <div class="col-md-3">{{ device.serialNumber }}</div>
+              <div class="col-md-3">{{ device.counter }}</div>
             </div>
           </router-link>
         </li>
@@ -42,8 +44,6 @@
 
 <script>
 import ServiceClient from "@/Services/ServiceClient";
-import ServiceDevice from "@/Services/ServiceDevice";
-import client from "@/views/client";
 
 export default {
   name: "search-device",
