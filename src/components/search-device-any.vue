@@ -2,7 +2,7 @@
   <div class="list row">
     <div class="col-md-8">
       <div class="input-group mb-3">
-        <input v-model="anyParam" class="form-control" placeholder="Search by any parameter"
+        <input v-model="anyParam" class="form-control" placeholder="Lazy search"
                type="text" v-on:input="searchAnyParam"/>
       </div>
     </div>

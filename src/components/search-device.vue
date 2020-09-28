@@ -12,26 +12,20 @@
         <input v-model="serialNumber" placeholder="Search by serialNumber" type="text" @input="searchDevice"/>
       </div>
     </div>
-
-    <br>
-    <div class="row" v-if="client || product || serialNumber" >
-      <div class="col-md-3">Client</div>
-      <div class="col-md-3">Product</div>
-      <div class="col-md-3">Serial Number</div>
-      <div class="col-md-3">Counter</div>
-    </div>
-
     <div>
       <ul class="list-group">
-
+        <div class="row" v-if="client || product || serialNumber" >
+          <div class="col-md-4">Client</div>
+          <div class="col-md-4">Device Name</div>
+          <div class="col-md-4">Counter</div>
+        </div>
         <li v-for="device in devices" class="list-group-item">
           <router-link
-              :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.productName + ' - ' + device.serialNumber, product: device.productName }}">
+              :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.name, product: device.productName }}">
             <div class="row">
-              <div class="col-md-3">{{ device.clientName }}</div>
-              <div class="col-md-3">{{ device.productName }}</div>
-              <div class="col-md-3">{{ device.serialNumber }}</div>
-              <div class="col-md-3">{{ device.counter }}</div>
+              <div class="col-md-4">{{ device.clientName }}</div>
+              <div class="col-md-4">{{ device.name }}</div>
+              <div class="col-md-4">{{ device.counter }}</div>
             </div>
           </router-link>
         </li>
