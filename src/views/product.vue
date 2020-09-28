@@ -53,11 +53,12 @@ export default {
         name: this.product.name,
         stock: this.product.stock
       };
+      if (this.product.name != null && this.product.name != ""){
       ServiceProduct.createProduct(data)
             .then(this.submitted = true)
             .then(response => console.log(response.data))
             .catch(e => {console.log(e);});
-    },
+    }},
     newProduct() {
       this.submitted = false;
       this.product = {};
