@@ -1,12 +1,11 @@
 <template>
   <div class="list row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="input-group mb-3">
         <input v-model="anyParam" class="form-control" placeholder="Lazy search"
                type="text" v-on:input="searchAnyParam"/>
       </div>
     </div>
-
     <div class="col-md-12" v-if="anyParam">
       <h4>Device List</h4>
       <ul class="list-group">

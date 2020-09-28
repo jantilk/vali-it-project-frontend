@@ -1,17 +1,19 @@
 <template>
   <div>
-
     <div class="row">
       <div class="col-md-4">
-        <input id="" v-model="client" placeholder="Search by client" type="text" @input="searchDevice"/>
+        <input v-model="client" class="form-control" placeholder="Search by Client" @input="searchDevice"/>
       </div>
       <div class="col-md-4">
-        <input v-model="product" placeholder="Search by product" type="text" @input="searchDevice"/>
+        <input v-model="product" class="form-control" placeholder="Search by Product" type="text"
+               @input="searchDevice"/>
       </div>
       <div class="col-md-4">
-        <input v-model="serialNumber" placeholder="Search by serialNumber" type="text" @input="searchDevice"/>
+        <input v-model="serialNumber" class="form-control" placeholder="Search by S/N" type="text"
+               @input="searchDevice"/>
       </div>
     </div>
+
     <div>
       <ul class="list-group">
         <div class="row" v-if="client || product || serialNumber" >
@@ -31,7 +33,6 @@
         </li>
       </ul>
     </div>
-
   </div>
 </template>
 
