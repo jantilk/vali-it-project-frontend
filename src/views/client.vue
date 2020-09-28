@@ -1,20 +1,24 @@
 <template>
   <div>
-    <div class="row" v-if="!submitted">
-      <div>
-        <input type="text" id="name" required v-model="client.name" name="name" placeholder="create new client"/>
+    <div class="row">
+      <div class="col-md-12">
+        <search-client></search-client>
       </div>
-      <button @click="createClient" class="btn btn-success">Create</button>
+    </div>
+    <div class="row" v-if="!submitted">
+      <div class="col-md-8">
+        <input v-model="client.name" class="form-control" name="name" placeholder="Create new client" required
+               type="text"/>
+      </div>
+      <div class="col-md-3" style="margin-left: 20px">
+        <button class="btn btn-success" @click="createClient">Create</button>
+      </div>
     </div>
     <div v-else>
       <h4>Client created successfully!</h4>
       <button class="btn btn-success" @click="newClient">Create another</button>
     </div>
-
-    <br>
-    <search-client></search-client>
-
-    </div>
+  </div>
 </template>
 
 <script>
@@ -36,10 +40,13 @@ export default {
   methods: {
     createClient() {
       var data = {name: this.client.name};
-
-      ServiceClient.create(data)
-          .then(this.submitted = true)
-          .catch(e => {console.log(e);});
+      if (this.client.name != null && this.client.name != "") {
+        ServiceClient.create(data)
+            .then(this.submitted = true)
+            .catch(e => {
+              console.log(e);
+            });
+      }
     },
     newClient() {
       this.submitted = false;

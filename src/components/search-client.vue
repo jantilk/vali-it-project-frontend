@@ -1,28 +1,24 @@
 <template>
   <div>
-
-    <input type="text" placeholder="Search by name" v-model="name" v-on:input="clientByName"/>
-
-    <div class="row">
-      <div class="col-sm-4">
-        <ul>
-          <li v-for="client in clients">
-            <router-link :to="{ path: '/device', name: 'clientDevice', params: { id: client.name }}">
-              ID: {{client.id}}, {{ client.name }}
-            </router-link>
-          </li>
-        </ul>
-      </div>
-
-<!--      <div class="col-sm-8">-->
-<!--        <ul>-->
-<!--          <li v-for="device in devices">-->
-<!--            {{device}}-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </div>-->
-
+    <input v-model="name" class="form-control" placeholder="Search by name" type="text" v-on:input="clientByName"/>
+    <div>
+      <ul>
+        <li v-for="client in clients">
+          <router-link :to="{ path: '/device', name: 'clientDevice', params: { id: client.name }}">
+            ID: {{ client.id }}, {{ client.name }}
+          </router-link>
+        </li>
+      </ul>
     </div>
+
+    <!--      <div class="col-sm-8">-->
+    <!--        <ul>-->
+    <!--          <li v-for="device in devices">-->
+    <!--            {{device}}-->
+    <!--          </li>-->
+    <!--        </ul>-->
+    <!--      </div>-->
+
 
   </div>
 </template>
@@ -35,7 +31,7 @@ import ServiceDevice from "@/Services/ServiceDevice";
 export default {
   name: "all-clients",
   data() {
-    key: null
+    null
     return {
       clients: [],
       devices: [],
