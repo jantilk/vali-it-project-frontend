@@ -1,6 +1,6 @@
 <template>
     <div>
-      <v-toolbar color="teal" dark>
+      <v-toolbar>
         {{selectDevice}}
         <v-row>
           <v-autocomplete
@@ -18,8 +18,8 @@
           ></v-autocomplete>
         </v-row>
       </v-toolbar>
-
     </div>
+
 </template>
 
 <script>
