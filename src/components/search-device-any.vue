@@ -2,30 +2,25 @@
   <div class="list row">
     <div class="col-md-8">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by any parameter"
-               v-model="anyParam" v-on:input="searchAnyParam"/>
+        <input v-model="anyParam" class="form-control" placeholder="Lazy search"
+               type="text" v-on:input="searchAnyParam"/>
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-12" v-if="anyParam">
       <h4>Device List</h4>
       <ul class="list-group">
-        <li class="list-group-item" v-for="device in devices">
-          <router-link :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.id, product: device.productId }}">
-              ID:
-              {{device.id}}
-              <br>
-          Client ID:
-          {{device.clientId}}
-          <br>
-          Product ID:
-          {{device.productId}}
-          <br>
-          S/N:
-          {{device.serialNumber}}
-          <br>
-          Counter:
-          {{device.counter}}
+        <li v-for="device in devices" class="list-group-item">
+          <router-link
+              :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.name }}">
+            Client Name:
+            {{ device.clientName }}
+            <br>
+            Counter:
+            {{ device.counter }}
+            <br>
+            Name:
+            {{ device.name }}
           </router-link>
         </li>
       </ul>
