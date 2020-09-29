@@ -1,94 +1,112 @@
 <template>
   <div>
-  <div class="submit-form">
-    <div v-if="selectedCreate">
-      <div v-if="!submitted">
-        <div class="form-group">
-          <label for="jobDescription">Job Description</label>
-          <input type="text" class="form-control" id="jobDescription" required v-model="workOrder.jobDescription"
-                 name="jobDescription"/>
+    <div class="submit-form">
+      <div v-if="selectedCreate">
+        <div v-if="!submitted">
+          <div class="form-group">
+            <label for="jobDescription">Job Description</label>
+            <input type="text" class="form-control" id="jobDescription" required v-model="workOrder.jobDescription"
+                   name="jobDescription"/>
+          </div>
+          <div class="form-group">
+
+            <label for="deviceName">Device name</label>
+            <input type="text" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
+                   name="deviceName"/>
+          </div>
+
+          <div class="form-group">
+            <label for="technicianName">Technician name</label>
+            <input type="text" class="form-control" id="technicianName" required v-model="workOrder.technicianName"
+                   name="technicianName"/>
+          </div>
+          <!--        <div class="form-group">-->
+          <!--          <label for="productName">Product name</label>-->
+          <!--          <input type="text" class="form-control" id="productName" required v-model="workOrder.productName"-->
+          <!--                 name="productName"/>-->
+          <!--        </div>-->
+
+
+          <div class="form-group">
+            <label for="consumableName">Consumable name</label>
+            <input type="text" class="form-control" id="consumableName" required v-model="workOrder.consumableName"
+                   name="consumableName"/>
+
+            <button @click="consumable1AddOne()" class="btn btn-success">Add 1</button>
+            <span>Consumable quantity: {{ this.consumableAmount }}</span>
+          </div>
+
+          <!--          This is a button that shows only when first consumable is inserted. If it's pressed it will show another consumable input-->
+          <div v-if="optionForAnotherConsumable">
+            <div style="color:#ff3c00">
+              <button @click="addAnotherConsumable">Add another consumable? Click here</button>
+            </div>
+            <br>
+          </div>
+
+          <!--          This input field only shows if the user has chosen to add another consumable-->
+          <div v-if="AddExtraConsumable">
+            <div class="form-group">
+              <label for="consumableName2">Consumable name2</label>
+              <input type="text" class="form-control" id="consumableName2" v-model="consumableName2"
+                     name="consumableName2"/>
+
+              <button @click="consumable2AddOne()" class="btn btn-success">Add 1</button>
+              <span>Consumable quantity: {{ this.consumableAmount2 }}</span>
+            </div>
+          </div>
+
+          <!--          This is a button that shows only when second consumable is inserted. If it's pressed it will show another consumable input-->
+          <div v-if="optionForAnotherConsumable2">
+            <div style="color:#ff3c00">
+              <button @click="addAnotherConsumable2">Add another consumable? Click here</button>
+            </div>
+            <br>
+          </div>
+          <!--          This input field only shows if the user has chosen to add another consumable-->
+          <div v-if="AddExtraConsumable2">
+            <div class="form-group">
+              <label for="consumableName3">Consumable name3</label>
+              <input type="text" class="form-control" id="consumableName3" v-model="consumableName3"
+                     name="consumableName3"/>
+
+              <button @click="consumable3AddOne()" class="btn btn-success">Add 1</button>
+              <span>Consumable quantity: {{ this.consumableAmount3 }}</span>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="form-group">
+            <label for="status">Work order completed</label>
+            <input align="left" type="checkbox" class="form-control" id="status" required v-model="workOrder.status"
+                   name="status"/>
+          </div>
+
+          <button @click="createWorkOrder" class="btn btn-success">Create</button>
         </div>
-        <div class="form-group">
 
-          <label for="deviceName">Device name</label>
-          <input type="text" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
-                 name="deviceName"/>
+
+        <div v-else>
+          <h4>Work order created successfully!</h4>
+          <button class="btn btn-success" @click="newWorkOrder">Create another</button>
         </div>
+        <br>
 
-        <div class="form-group">
-          <label for="technicianName">Technician name</label>
-          <input type="text" class="form-control" id="technicianName" required v-model="workOrder.technicianName"
-                 name="technicianName"/>
-        </div>
-<!--        <div class="form-group">-->
-<!--          <label for="productName">Product name</label>-->
-<!--          <input type="text" class="form-control" id="productName" required v-model="workOrder.productName"-->
-<!--                 name="productName"/>-->
-<!--        </div>-->
-
-
-        <div class="form-group">
-          <label for="consumableName">Consumable name</label>
-          <input type="text" class="form-control" id="consumableName" required v-model="workOrder.consumableName"
-                 name="consumableName"/>
-
-          <button @click="consumable1AddOne()" class="btn btn-success">Add 1</button>
-          <span >Consumable quantity: {{this.consumableAmount}}</span>
-        </div>
-
-<!--TODO: tee nii et consumable 2 ja 3 oleksid kättesaadavad vaid siis kui sisestaja soovib neid lisada, muidu mitte.-->
-        <div class="form-group">
-          <label for="consumableName2">Consumable name2</label>
-          <input type="text" class="form-control" id="consumableName2" v-model="consumableName2"
-                 name="consumableName2"/>
-
-          <button @click="consumable2AddOne()" class="btn btn-success">Add 1</button>
-          <span >Consumable quantity: {{this.consumableAmount2}}</span>
-        </div>
-
-        <div class="form-group">
-          <label for="consumableName3">Consumable name3</label>
-          <input type="text" class="form-control" id="consumableName3" v-model="consumableName3"
-                 name="consumableName3"/>
-
-          <button @click="consumable3AddOne()" class="btn btn-success">Add 1</button>
-          <span >Consumable quantity: {{this.consumableAmount3}}</span>
-        </div>
-
-
-        <div class="form-group">
-          <label for="status">Work order completed</label>
-          <input align="left" type="checkbox" class="form-control" id="status" required v-model="workOrder.status"
-                 name="status"/>
-        </div>
-
-        <button @click="createWorkOrder" class="btn btn-success">Create</button>
       </div>
 
-
       <div v-else>
-        <h4>Work order created successfully!</h4>
-        <button class="btn btn-success" @click="newWorkOrder">Create another</button>
+        <h4>Create a new work order</h4>
+        <button class="btn btn-success" @click="startCreatingWorkOrder">Create</button>
       </div>
       <br>
 
+
+      <div class="form-group">
+        <search-workOrder></search-workOrder>
+      </div>
+
+
     </div>
-
-    <div v-else>
-      <h4>Create a new work order</h4>
-      <button class="btn btn-success" @click="startCreatingWorkOrder">Create</button>
-    </div>
-    <br>
-
-
-    <div class="form-group">
-      <search-workOrder></search-workOrder>
-    </div>
-
-
-
-
-  </div>
     <div class="form-group">
       <search-work-order-simultaneous></search-work-order-simultaneous>
     </div>
@@ -112,11 +130,15 @@ export default {
       workOrder: {anyParam: null},
       submitted: false,
       selectedCreate: false,
+      AddExtraConsumable: false,
+      AddExtraConsumable2: false,
+      optionForAnotherConsumable: false,
+      optionForAnotherConsumable2: false,
       consumableName2: "",
       consumableName3: "",
-      consumableAmount:0,
-      consumableAmount2:0,
-      consumableAmount3:0,
+      consumableAmount: 0,
+      consumableAmount2: 0,
+      consumableAmount3: 0,
       itemsDevice: [],
       searchDevice: null,
       selectDevice: null
@@ -143,9 +165,11 @@ export default {
           .catch(e => {
             console.log(e);
           });
-      this.consumableAmount=0;
-      this.consumableAmount2=0;
-      this.consumableAmount3=0;
+      this.consumableAmount = 0;
+      this.consumableAmount2 = 0;
+      this.consumableAmount3 = 0;
+      this.consumableName2 ="";
+      this.consumableName3 = "";
     },
 
     newWorkOrder() {
@@ -154,20 +178,29 @@ export default {
     },
 
     consumable1AddOne() {
-      this.consumableAmount = this.consumableAmount+1;
+      this.consumableAmount = this.consumableAmount + 1;
+      this.optionForAnotherConsumable = true;
     },
 
     consumable2AddOne() {
-      this.consumableAmount2 = this.consumableAmount2+1;
+      this.consumableAmount2 = this.consumableAmount2 + 1;
+      this.optionForAnotherConsumable2 = true;
     },
 
     consumable3AddOne() {
-      this.consumableAmount3 = this.consumableAmount3+1;
+      this.consumableAmount3 = this.consumableAmount3 + 1;
     },
 
     startCreatingWorkOrder() {
       this.selectedCreate = true;
+    },
+    addAnotherConsumable() {
+      this.AddExtraConsumable = true;
+    },
+    addAnotherConsumable2() {
+      this.AddExtraConsumable2 = true;
     }
+
   }
 };
 </script>
