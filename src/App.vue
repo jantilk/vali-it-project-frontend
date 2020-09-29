@@ -22,7 +22,8 @@
           <router-link to="/device">Device</router-link> |
           <router-link to="/workOrder">Work order</router-link> |
           <router-link to="/product">Product</router-link> |
-          <router-link to="/consumable">Consumable</router-link>
+          <router-link to="/consumable">Consumable</router-link> |
+          <router-link to="/login">Login</router-link>
         </div>
 
       </div>
