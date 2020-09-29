@@ -1,43 +1,41 @@
 <template>
   <div>
-      <search-device></search-device>
-    <div class="row">
-    </div>
-    <div class="submit-form">
-      <div v-if="createNewButton">
-        <div v-if="!submitted">
-          <div class="form-group">
-            <label for="clientName">Client Name</label>
-            <input type="text" class="form-control" id="clientName" required v-model="device.client" name="client"/>
-          </div>
-          <div class="form-group">
-            <label for="sn">Serial Number</label>
-            <input type="text" class="form-control" id="sn" required v-model="device.sn" name="sn">
-          </div>
-          <div class="form-group">
-            <label for="counter">Counter</label>
-            <input type="number" class="form-control" id="counter" required v-model="device.counter" name="counter">
-          </div>
-          <div class="form-group">
-            <label for="productName">Product Name</label>
-            <input type="text" class="form-control" id="productName" required v-model="device.product" name="product">
-          </div>
+    <search-device-any></search-device-any>
+    <search-device></search-device>
+    <br>
+    <div v-if="createNewButton">
+      <div v-if="!submitted">
+        <div class="form-group">
+          <label for="clientName">Client Name</label>
+          <input id="clientName" v-model="device.client" class="form-control" name="client" required type="text"/>
+        </div>
+        <div class="form-group">
+          <label for="sn">Serial Number</label>
+          <input id="sn" v-model="device.sn" class="form-control" name="sn" required type="text">
+        </div>
+        <div class="form-group">
+          <label for="counter">Counter</label>
+          <input id="counter" v-model="device.counter" class="form-control" name="counter" required type="number">
+        </div>
+        <div class="form-group">
+          <label for="productName">Product Name</label>
+          <input id="productName" v-model="device.product" class="form-control" name="product" required type="text">
+        </div>
 
-          <button @click="createDevice" class="btn btn-success">Create</button>
-        </div>
-        <div v-else>
-          <h4>Device created successfully!</h4>
-          <button class="btn btn-success" @click="newDevice">Create another</button>
-        </div>
+        <button class="btn btn-success" @click="createDevice">Create</button>
       </div>
       <div v-else>
-        <h4>Create a new Device</h4>
-        <button class="btn btn-success" @click="createNewDevice">Create</button>
+        <h4>Device created successfully!</h4>
+        <button class="btn btn-success" @click="newDevice">Create another</button>
       </div>
-      <br>
-      <search-device-any></search-device-any>
+    </div>
+    <div v-else>
+      <h4>Create a new Device</h4>
+      <button class="btn btn-success" @click="createNewDevice">Create</button>
     </div>
   </div>
+
+
 </template>
 
 <script>
@@ -80,7 +78,9 @@ export default {
           //   // this.client.id = response.data.id;
           //   // console.log(response.data);
           // })
-          .catch(e => {console.log(e);});
+          .catch(e => {
+            console.log(e);
+          });
     },
     newDevice() {
       this.submitted = false;
