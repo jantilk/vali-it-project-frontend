@@ -1,22 +1,22 @@
 <template>
     <div>
-      <v-toolbar color="teal" dark>
-        <v-row>
-          <v-autocomplete
-              v-model="selectClient"
-              :items="itemsClient"
-              :item-text="getClientName"
-              :item-value="getClientId"
-              :search-input.sync="searchClient"
-              class="mx-4"
-              flat
-              hide-no-data
-              hide-details
-              label="Find Client"
-              solo-inverted
-          ></v-autocomplete>
-        </v-row>
-      </v-toolbar>
+        <v-toolbar color="teal" dark>
+          <v-row>
+            <v-autocomplete
+                v-model="selectClient"
+                :items="itemsClient"
+                :item-text="getClientName"
+                :item-value="getClientId"
+                :search-input.sync="searchClient"
+                class="mx-4"
+                flat
+                hide-no-data
+                hide-details
+                label="Find Client"
+                solo-inverted
+            ></v-autocomplete>
+          </v-row>
+        </v-toolbar>
     </div>
 </template>
 

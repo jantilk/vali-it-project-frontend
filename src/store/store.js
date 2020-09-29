@@ -22,9 +22,11 @@ export default new Vuex.Store({
 
     status: false,
     productId: null,
-    jobDescription: null
+    jobDescription: null,
 
-
+    allWo: [],
+    showCreatePage: false,
+    showWoListPage: true
   },
   mutations: {
     updateSelectTechnician (state, newValue) {
@@ -71,7 +73,15 @@ export default new Vuex.Store({
     },
     updateJobDescription (state, newValue) {
       state.jobDescription = newValue;
+    },
+    updateAllWo (state, newValue) {
+      state.allWo = newValue;
+    },
+    updateShowCreatePage (state, newValue) {
+      state.showCreatePage = newValue;
+    },
+    updateShowWoListPage (state, newValue) {
+      state.showWoListPage = newValue;
     }
-
   }
 })
