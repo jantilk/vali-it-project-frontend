@@ -10,6 +10,11 @@
           </div>
           <div class="form-group">
 
+
+
+
+
+
             <label for="deviceName">Device name</label>
             <input type="text" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
                    name="deviceName"/>
@@ -26,20 +31,25 @@
           <!--                 name="productName"/>-->
           <!--        </div>-->
 
-
+            <div style="color:#00c4ff">
+              <button @click="addConsumable">+ consumable</button>
+            </div>
+          <br>
+          <div v-if="optionForConsumable">
           <div class="form-group">
             <label for="consumableName">Consumable name</label>
             <input type="text" class="form-control" id="consumableName" required v-model="workOrder.consumableName"
                    name="consumableName"/>
 
-            <button @click="consumable1AddOne()" class="btn btn-success">Add 1</button>
+            <button @click="consumable1AddOne()" class="btn btn-primary">Add 1</button>
             <span>Consumable quantity: {{ this.consumableAmount }}</span>
+          </div>
           </div>
 
           <!--          This is a button that shows only when first consumable is inserted. If it's pressed it will show another consumable input-->
           <div v-if="optionForAnotherConsumable">
-            <div style="color:#ff3c00">
-              <button @click="addAnotherConsumable">Add another consumable? Click here</button>
+            <div style="color:#00c4ff">
+              <button @click="addAnotherConsumable">+ another consumable</button>
             </div>
             <br>
           </div>
@@ -51,15 +61,15 @@
               <input type="text" class="form-control" id="consumableName2" v-model="consumableName2"
                      name="consumableName2"/>
 
-              <button @click="consumable2AddOne()" class="btn btn-success">Add 1</button>
+              <button @click="consumable2AddOne()" class="btn btn-primary">Add 1</button>
               <span>Consumable quantity: {{ this.consumableAmount2 }}</span>
             </div>
           </div>
 
           <!--          This is a button that shows only when second consumable is inserted. If it's pressed it will show another consumable input-->
           <div v-if="optionForAnotherConsumable2">
-            <div style="color:#ff3c00">
-              <button @click="addAnotherConsumable2">Add another consumable? Click here</button>
+            <div style="color:#00c4ff">
+              <button @click="addAnotherConsumable2">+ another consumable</button>
             </div>
             <br>
           </div>
@@ -70,12 +80,12 @@
               <input type="text" class="form-control" id="consumableName3" v-model="consumableName3"
                      name="consumableName3"/>
 
-              <button @click="consumable3AddOne()" class="btn btn-success">Add 1</button>
+              <button @click="consumable3AddOne()" class="btn btn-primary">Add 1</button>
               <span>Consumable quantity: {{ this.consumableAmount3 }}</span>
             </div>
           </div>
           <br>
-          <br>
+
           <div class="form-group">
             <label for="status">Work order completed</label>
             <input align="left" type="checkbox" class="form-control" id="status" required v-model="workOrder.status"
@@ -132,6 +142,7 @@ export default {
       selectedCreate: false,
       AddExtraConsumable: false,
       AddExtraConsumable2: false,
+      optionForConsumable: false,
       optionForAnotherConsumable: false,
       optionForAnotherConsumable2: false,
       consumableName2: "",
@@ -140,8 +151,6 @@ export default {
       consumableAmount2: 0,
       consumableAmount3: 0,
       itemsDevice: [],
-      searchDevice: null,
-      selectDevice: null
       // testV: {name: "asdf"}
     };
   },
@@ -170,11 +179,16 @@ export default {
       this.consumableAmount3 = 0;
       this.consumableName2 ="";
       this.consumableName3 = "";
+      this.optionForAnotherConsumable = false;
+      this.optionForConsumable=false;
     },
 
     newWorkOrder() {
       this.submitted = false;
       this.workOrder = {};
+    },
+    addConsumable(){
+      this.optionForConsumable=true;
     },
 
     consumable1AddOne() {
