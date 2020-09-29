@@ -31,8 +31,8 @@
 
     <div class="container">
       <v-main>
-        <mobile class="d-flex d-sm-none"/>
-        <div class="d-none d-sm-flex">
+        <mobile class="d-row d-sm-none"/>
+        <div class="d-none d-sm-row">
           <router-view/>
         </div>
       </v-main>
