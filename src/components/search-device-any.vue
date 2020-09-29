@@ -11,7 +11,7 @@
       <ul class="list-group">
         <li v-for="device in devices" class="list-group-item">
           <router-link
-              :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { id: device.name }}">
+              :to="{ path: '/workOrder', name: 'deviceWorkOrder', params: { deviceName: device.name }}">
             Client Name:
             {{ device.clientName }}
             <br>
