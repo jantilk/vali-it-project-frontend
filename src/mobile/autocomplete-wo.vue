@@ -1,7 +1,5 @@
 <template>
-
-    <v-container>
-
+    <div>
       <br/>
       <autocomplete-client/>
       <autocomplete-device/>
@@ -23,17 +21,15 @@
 
       <br/>
       <button class="btn btn-success float-right" @click="createMobileWO">Create</button>
+      <button class="btn btn-danger float-left" @click="showCreatePageF">Cancel</button>
 
-    </v-container>
+    </div>
 </template>
 
 <script>
 import AutocompleteTechnician from "@/mobile/autocomplete-technician";
 import AutocompleteDevice from "@/mobile/autocomplete-device";
 import AutocompleteClient from "@/mobile/autocomplete-client";
-import ServiceDevice from "@/Services/ServiceDevice";
-import ServiceClient from "@/Services/ServiceClient";
-import ServiceTechnician from "@/Services/ServiceTechnician";
 import ServiceWorkOrder from "@/Services/ServiceWorkOrder";
 
 export default {
@@ -96,11 +92,32 @@ export default {
       set(newValue) {
         this.$store.commit("updateSelectTechnician", newValue);
       }
+    },
+    showCreatePage: {
+      get() {
+        return this.$store.state.showCreatePage;
+      },
+      set(newValue) {
+        this.$store.commit("updateShowCreatePage", newValue);
+      }
+    },
+    showWoListPage: {
+      get() {
+        return this.$store.state.showWoListPage;
+      },
+      set(newValue) {
+        this.$store.commit("updateShowWoListPage", newValue);
+      }
     }
+
   },
 
   methods: {
-    // create WO
+    showCreatePageF () {
+      this.showCreatePage = !this.showCreatePage;
+      this.showWoListPage = !this.showWoListPage;
+    },
+
     createMobileWO() {
       let data = {
         jobDescription: this.jobDescription,
@@ -110,6 +127,8 @@ export default {
         status: this.status
       };
 
+      this.showCreatePage = !this.showCreatePage;
+      this.showWoListPage = !this.showWoListPage;
       ServiceWorkOrder.createMobileWO(data);
     }
   }
