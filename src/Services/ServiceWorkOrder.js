@@ -4,6 +4,11 @@ class ServiceWorkOrder {
     create(data, consumableAmount) {
         return http.post("/createWO", data, {params: {"consumableAmount":consumableAmount}});
     }
+
+    createMobileWO(data) {
+        return http.post("device/mobilewo", data);
+    }
+
     // getAll() {
     //     return http.get("/device")
     // }

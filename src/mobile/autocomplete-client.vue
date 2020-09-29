@@ -1,12 +1,11 @@
 <template>
     <div>
       <v-toolbar color="teal" dark>
-        {{selectClient}}
         <v-row>
           <v-autocomplete
               v-model="selectClient"
               :items="itemsClient"
-              :item-text="getName"
+              :item-text="getClientName"
               :item-value="getClientId"
               :search-input.sync="searchClient"
               class="mx-4"
@@ -26,26 +25,94 @@ import ServiceClient from "@/Services/ServiceClient";
 
 export default {
   name: "autocomplete-client",
-  data () {
-    return {
-      itemsClient: [],
-      searchClient: null,
-      selectClient: null,
-      clientId: null
-    }
-  },
+
   computed: {
-  },
-  watch: {
-    searchClient (inputClient) {
-      if (this.searchClient == "") {
-        this.itemsClient = [];
-        this.selectClient = null;
-      } else {
-        this.clientByName(inputClient);
+    selectClient: {
+      get() {
+        return this.$store.state.selectClient;
+      },
+      set(newValue) {
+        this.$store.commit("updateSelectClient", newValue);
+      }
+    },
+    itemsClient: {
+      get() {
+        return this.$store.state.itemsClient;
+      },
+      set(newValue) {
+        this.$store.commit("updateItemsClient", newValue);
+      }
+    },
+    searchClient: {
+      get() {
+        return this.$store.state.searchClient;
+      },
+      set(newValue) {
+        this.$store.commit("updateSearchClient", newValue);
+      }
+    },
+    selectDevice: {
+      get() {
+        return this.$store.state.selectDevice;
+      },
+      set(newValue) {
+        this.$store.commit("updateSelectDevice", newValue);
+      }
+    },
+    itemsDevice: {
+      get() {
+        return this.$store.state.itemsDevice;
+      },
+      set(newValue) {
+        this.$store.commit("updateItemsDevice", newValue);
+      }
+    },
+    searchDevice: {
+      get() {
+        return this.$store.state.searchDevice;
+      },
+      set(newValue) {
+        this.$store.commit("updateSearchDevice", newValue);
+      }
+    },
+
+    deviceId: {
+      get() {
+        return this.$store.state.deviceId;
+      },
+      set(newValue) {
+        this.$store.commit("updateDeviceId", newValue);
+      }
+    },
+    clientId: {
+      get() {
+        return this.$store.state.clientId;
+      },
+      set(newValue) {
+        this.$store.commit("updateClientId", newValue);
       }
     }
   },
+  mounted() {
+    ServiceClient.clientByName('')
+        .then(response => {
+          this.itemsClient = response.data;
+        })
+        .catch(e => {console.log(e);});
+    console.log(this.itemsClient);
+  },
+
+  watch: {
+    searchClient (queryString) {
+      if (this.searchClient == "") {
+        // this.itemsClient = [];
+        this.selectClient = null;
+      } else {
+        this.clientByName(queryString);
+      }
+    }
+  },
+
   methods: {
     // select client logic
     clientByName (value) {
@@ -56,7 +123,7 @@ export default {
           .catch(e => {console.log(e);});
       console.log(this.itemsClient);
     },
-    getName: function(el){
+    getClientName: function(el){
       return el.name;
     },
     getClientId: function(el){
