@@ -1,5 +1,15 @@
 <template>
+
   <div>
+    <div class="form-group">
+      <search-workOrder></search-workOrder>
+    </div>
+
+    <div class="form-group">
+      <search-work-order-simultaneous></search-work-order-simultaneous>
+    </div>
+
+
     <div class="submit-form">
       <div v-if="selectedCreate">
         <div v-if="!submitted">
@@ -92,8 +102,10 @@
                    name="status"/>
           </div>
 
+          <div align="center">
           <button @click="createWorkOrder" class="btn btn-success">Create</button>
-        </div>
+          </div>
+          </div>
 
 
         <div v-else>
@@ -110,16 +122,12 @@
       </div>
       <br>
 
-
-      <div class="form-group">
-        <search-workOrder></search-workOrder>
-      </div>
-
-
     </div>
-    <div class="form-group">
-      <search-work-order-simultaneous></search-work-order-simultaneous>
-    </div>
+
+
+
+
+
   </div>
 </template>
 

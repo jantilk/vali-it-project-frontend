@@ -2,13 +2,10 @@
   <div class="list row">
 
     <div class="col-md-12">
-      <br>
-      <br>
-      <h4>Search for work orders</h4>
 
-      <div class="input-group mb-1">
+      <div class="input-group mb-3">
 
-        <input type="text" class="form-control" placeholder="Search by tech./dev./prod./cons. id"
+        <input type="text" class="form-control" placeholder="Lazy search"
                v-model="anyParamWO" @click="searchAnyParamWO" @input="searchAnyParamWO"/>
       </div>
     </div>
@@ -16,11 +13,10 @@
     <div class="col-md-12">
       All incomplete work orders
       <input type="radio" v-model="statusParamWO" v-on:change="searchByStatus" value=false>
-      <br>
+
       All done work orders
       <input type="radio" v-model="statusParamWO" v-on:change="searchByStatus" value=true>
-      <br>
-      <br>
+
     </div>
     <div class="col-md-12">
 
@@ -33,20 +29,23 @@
             Work Order ID:
             <button @click="showSpecific(workOrder.id)" class="btn btn-success">{{ workOrder.id }}</button>
             <br>
-            Technician ID:
-            {{ workOrder.technicianId }}
+            Client name:
+            {{ workOrder.clientName }}
+            <br>
+            Technician name:
+            {{ workOrder.technicianName }}
             <br>
             Work done:
             {{ workOrder.status }}
             <br>
-            Device ID:
-            {{ workOrder.deviceId }}
+            Device name:
+            {{ workOrder.deviceName }}
             <br>
-            Product ID:
-            {{ workOrder.productId }}
+            Product name:
+            {{ workOrder.productName }}
             <br>
-            Consumable ID:
-            {{ workOrder.consumableId }}
+            Consumable name:
+            {{ workOrder.consumableName }}
             <br>
             Job Description:
             {{ workOrder.jobDescription }}
@@ -65,16 +64,16 @@
             {{ workOrder.id }}
             <br>
             Technician ID:
-            {{ workOrder.technicianId }}
+            {{ workOrder.technicianName }}
             <br>
             Work done:
             {{ workOrder.status }}
             <br>
             Device ID:
-            {{ workOrder.deviceId }}
+            {{ workOrder.name }}
             <br>
             Product ID:
-            {{ workOrder.productId }}
+            {{ workOrder.productName }}
             <br>
 <!--            Consumable ID:-->
 <!--            {{ workOrder.consumableId }}-->
