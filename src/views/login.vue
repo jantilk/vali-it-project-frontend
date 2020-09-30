@@ -38,6 +38,16 @@ export default {
       userpass: false
     };
   },
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
   methods: {
     technicianLogin() {
       let data = {
@@ -48,8 +58,11 @@ export default {
         ServiceTechnician.loginTechnician(data)
             .then((response) => {
               console.log(response.data)
-                if (response.data === true) {
-                  this.userpass = true;
+
+                if (response.data.status === true) {
+                  this.token = response.data.token;
+                  console.log(this.token);
+                  // this.userpass = true;
                 }
               })
             .catch(error => {
