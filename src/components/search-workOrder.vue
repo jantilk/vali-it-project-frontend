@@ -33,10 +33,14 @@
             {{ workOrder.clientName }}
             <br>
             Technician name:
-            {{ workOrder.technicianName }}
+            {{ workOrder.technicianName }} <button style="color:#00c4ff" @click="changeTechnicianSelected=true">edit</button>
+            <div v-if="changeTechnicianSelected">
+            <input type="text" class="form-control" placeholder="change technician name"
+                   v-model="editedTechnicianName" v-on:input="changeTechnicianName(workOrder.id, editedTechnicianName)"/>
+            </div>
             <br>
             Work done:
-            {{ workOrder.status }}
+            {{ workOrder.status }} <button style="color:#00c4ff" @click="">edit</button>
             <br>
             Device name:
             {{ workOrder.deviceName }}
@@ -48,7 +52,7 @@
             {{ workOrder.consumableName }}
             <br>
             Job Description:
-            {{ workOrder.jobDescription }}
+            {{ workOrder.jobDescription }} <button style="color:#00c4ff" @click="">edit</button>
 
           </li>
         </ul>
@@ -115,6 +119,8 @@ export default {
       statusParamWO: null,
       woSelected: false,
       workOrderId: null,
+      changeTechnicianSelected: false,
+      editedTechnicianName:null,
       workOrderConsumables: []
     };
   },
@@ -169,6 +175,11 @@ export default {
           .catch(e => {
             console.log(e);
           });
+    },
+    changeTechnicianName(workOrderId, editedTechnicianName){
+      this.editedTechnicianName = editedTechnicianName;
+      this.workOrderId = workOrderId;
+      ServiceWorkOrder.changeTechnicianName(this.workOrderId, this.editedTechnicianName)
     }
   }
 };
