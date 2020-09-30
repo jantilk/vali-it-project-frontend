@@ -37,6 +37,10 @@ class ServiceWorkOrder {
         return http.get("/workOrderAll")
     }
 
+    changeTechnicianName(editedTechnicianName, workOrderId){
+        return http.put("updateWorkOrderTechnicianName", {params: {"technicianName":editedTechnicianName, workOrderId}});
+    }
+
 
 
     // findWorkOrderConsumable(workOrderId){
