@@ -29,8 +29,8 @@ class ServiceWorkOrder {
         return http.get("/workOrderById", {params: {"id":workOrderId}})
     }
 
-    searchWorkOrderSimultaneous(client, serialNumber, product, technician, status){
-        return http.get("/workOrderSimultaneousSearch", {params: {client, "device":serialNumber, product, technician, status}})
+    searchWorkOrderSimultaneous(client, deviceName, product, technician, status){
+        return http.get("/workOrderSimultaneousSearch", {params: {client, deviceName, product, technician, status}})
     }
 
     findAllWo(){

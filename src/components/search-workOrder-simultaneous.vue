@@ -3,24 +3,25 @@
 
     <div class="row col-md-12">
 
-      <div class="col-md-0">
-        Search all
-        <input type="checkbox" id="cb" class="shrink mr-2 mt-2" v-model="searchAllParam" v-on:change="searchAll"/>
+
+      <div class="col-md-2">
+
+        <input type="checkbox"  id="cb" class="in-line form-control" v-model="searchAllParam" v-on:change="searchAll"/>
       </div>
       <div class="col-md-2">
-        <input type="text" placeholder="Search by client" v-model="clientName" @input="searchWorkOrderSimultaneous"/>
+        <input type="text" class="form-control" placeholder="Client" v-model="clientName" @input="searchWorkOrderSimultaneous"/>
       </div>
       <div class="col-md-2">
-        <input type="text" placeholder="Search by device SN" v-model="sn" @input="searchWorkOrderSimultaneous"/>
+        <input type="text" class="form-control" placeholder="Device" v-model="deviceName" @input="searchWorkOrderSimultaneous"/>
       </div>
       <div class="col-md-2">
-        <input type="text" placeholder="Search by product" v-model="productName" @input="searchWorkOrderSimultaneous"/>
+        <input type="text" class="form-control" placeholder="Product" v-model="productName" @input="searchWorkOrderSimultaneous"/>
       </div>
       <div class="col-md-2">
-        <input type="text" placeholder="Search by technician" v-model="technicianName"
+        <input type="text" class="form-control" placeholder="Technician" v-model="technicianName"
                @input="searchWorkOrderSimultaneous"/>
 
-    </div>
+      </div>
     </div>
 
     <div align="center" class="row">
@@ -37,34 +38,29 @@
         <input type="radio" v-model="statusParamSimultaneous" @click="this.searchAllParam=null"
                v-on:change="searchWorkOrderSimultaneous">
       </div>
-      </div>
-
-
+    </div>
 
 
     <br>
-    <div class="row">
-      <div class="col-md-2">Client</div>
-      <div class="col-md-2">Technician</div>
-      <div class="col-md-2">Product</div>
-      <div class="col-md-2">Serial Number</div>
-      <div class="col-md-2">Work done?</div>
+    <div class="row" >
+      <div class="col-md-3">Client</div>
+      <div class="col-md-3">Technician</div>
+      <div class="col-md-3">Device name</div>
+      <div class="col-md-3">Work done?</div>
     </div>
 
     <div>
-      <ul class="list-group">
-        <li class="list-group-item" v-for="workOrder in workOrders">
-          <a href="#">
-            <div class="row">
-              <div class="col-md-2">{{ workOrder.clientName }}</div>
-              <div class="col-md-2">{{ workOrder.technicianName }}</div>
-              <div class="col-md-2">{{ workOrder.productName }}</div>
-              <div class="col-md-2">{{ workOrder.serialNumber }}</div>
-              <!--              <div class="col-md-2">{{workOrder.workOrderId}}</div>-->
-              <div class="col-md-2">{{ workOrder.status }}</div>
+      <ul class="list-group" >
+        <v-card v-for="workOrder in workOrders" :color=workOrder.color >
+          <a style="color: #293554" href="#">
+            <div class="row" >
+              <div class="col-md-3" >{{ workOrder.clientName }}</div>
+              <div class="col-md-3">{{ workOrder.technicianName }}</div>
+              <div class="col-md-3">{{ workOrder.deviceName }}</div>
+              <div class="col-md-3">{{ workOrder.status }}</div>
             </div>
           </a>
-        </li>
+        </v-card>
       </ul>
     </div>
 
@@ -84,7 +80,7 @@ export default {
     return {
       workOrders: [],
       productName: "",
-      sn: "",
+      deviceName: "",
       technicianName: "",
       clientName: "",
       searchAllParam: null,
@@ -94,11 +90,11 @@ export default {
   methods: {
     searchWorkOrderSimultaneous() {
       this.searchAllParam = null
-      if (this.clientName === "" && this.sn === "" && this.productName === "" && this.technicianName === "" && this.statusParamSimultaneous === null) {
+      if (this.clientName === "" && this.deviceName === "" && this.productName === "" && this.technicianName === "" && this.statusParamSimultaneous === null) {
         this.workOrders = []
       } else {
         this.workOrders = [];
-        ServiceWorkOrder.searchWorkOrderSimultaneous(this.clientName, this.sn, this.productName, this.technicianName, this.statusParamSimultaneous)
+        ServiceWorkOrder.searchWorkOrderSimultaneous(this.clientName, this.deviceName, this.productName, this.technicianName, this.statusParamSimultaneous)
             .then(response => {
               this.workOrders = response.data;
               console.log(response.data);
@@ -111,6 +107,10 @@ export default {
     searchAll() {
       if (this.searchAllParam) {
         this.statusParamSimultaneous = null;
+        this.productName = "";
+        this.deviceName = "";
+        this.technicianName = "";
+        this.clientName = "";
         ServiceWorkOrder.findAllWo()
             .then(response => {
               this.workOrders = response.data;
