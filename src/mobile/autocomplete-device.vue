@@ -1,6 +1,5 @@
 <template>
     <div>
-      <v-toolbar color="teal" dark>
         <v-row>
           <v-autocomplete
               v-model="selectDevice"
@@ -16,7 +15,6 @@
               solo-inverted
           ></v-autocomplete>
         </v-row>
-      </v-toolbar>
 
     </div>
 </template>

@@ -1,9 +1,13 @@
 <template>
     <div>
+
       <br/>
       <autocomplete-client/>
+
+      <br/>
       <autocomplete-device/>
 
+      <br/>
       <br/>
       <div>
         <input type="text" class="form-control" placeholder="Add Job Description" v-model="jobDescription">
@@ -134,3 +138,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

@@ -26,7 +26,7 @@ export default new Vuex.Store({
 
     allWo: [],
     showCreatePage: false,
-    showWoListPage: true
+    showWoListPage: true,
   },
   mutations: {
     updateSelectTechnician (state, newValue) {

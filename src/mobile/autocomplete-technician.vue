@@ -1,22 +1,20 @@
 <template>
   <div>
-    <v-toolbar color="teal" dark>
-      <v-row>
-        <v-autocomplete
-            v-model="selectTechnician"
-            :items="itemsTechnician"
-            :item-text="getTechnicianName"
-            :item-value="getTechnicianId"
-            :search-input.sync="searchTechnician"
-            class="mx-4"
-            flat
-            hide-no-data
-            hide-details
-            label="Find Technician"
-            solo-inverted
-        ></v-autocomplete>
-      </v-row>
-    </v-toolbar>
+    <v-row>
+      <v-autocomplete
+          v-model="selectTechnician"
+          :items="itemsTechnician"
+          :item-text="getTechnicianName"
+          :item-value="getTechnicianId"
+          :search-input.sync="searchTechnician"
+          class="mx-4"
+          flat
+          hide-no-data
+          hide-details
+          label="Find Technician"
+          solo-inverted
+      ></v-autocomplete>
+    </v-row>
   </div>
 </template>
 

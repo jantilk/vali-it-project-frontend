@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar app class="d-none d-sm-flex">
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -30,12 +30,12 @@
     </v-app-bar>
 
     <div class="container">
-      <v-main>
-        <mobile class="d-row d-sm-none"/>
-        <div class="d-none d-sm-row">
+      <v-main class="d-none d-sm-flex">
+        <div>
           <router-view/>
         </div>
       </v-main>
+      <mobile class="d-row d-sm-none"/>
     </div>
 
   </v-app>
