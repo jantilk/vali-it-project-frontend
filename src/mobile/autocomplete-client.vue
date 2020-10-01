@@ -1,21 +1,21 @@
 <template>
-    <div>
-      <v-row>
-        <v-autocomplete
-            v-model="selectClient"
-            :items="itemsClient"
-            :item-text="getClientName"
-            :item-value="getClientId"
-            :search-input.sync="searchClient"
-            class="mx-4"
-            flat
-            hide-no-data
-            hide-details
-            label="Find Client"
-            solo-inverted
-        ></v-autocomplete>
-      </v-row>
-    </div>
+  <div>
+    <v-row>
+      <v-autocomplete
+          v-model="selectClient"
+          :items="itemsClient"
+          :item-text="getClientName"
+          :item-value="getClientId"
+          :search-input.sync="searchClient"
+          class="mx-4"
+          flat
+          hide-no-data
+          hide-details
+          label="Find Client"
+          solo-inverted
+      ></v-autocomplete>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -23,7 +23,6 @@ import ServiceClient from "@/Services/ServiceClient";
 
 export default {
   name: "autocomplete-client",
-
   computed: {
     selectClient: {
       get() {
@@ -73,7 +72,6 @@ export default {
         this.$store.commit("updateSearchDevice", newValue);
       }
     },
-
     deviceId: {
       get() {
         return this.$store.state.deviceId;
@@ -91,32 +89,25 @@ export default {
       }
     }
   },
-  mounted() {
-    ServiceClient.clientByName('')
-        .then(response => {
-          this.itemsClient = response.data;
-        })
-        .catch(e => {console.log(e);});
-    console.log(this.itemsClient);
-  },
 
   watch: {
     searchClient (queryString) {
       if (this.searchClient == "") {
-        // this.itemsClient = [];
-        this.selectClient = null;
+        this.itemsDevice = [];
+        this.selectDevice = null;
       } else {
-        this.clientByName(queryString);
+        this.searchClientWatcher(queryString);
       }
     }
   },
 
   methods: {
     // select client logic
-    clientByName (value) {
-      ServiceClient.clientByName(value)
+    searchClientWatcher (value) {
+      ServiceClient.findClientByName(value)
           .then(response => {
             this.itemsClient = response.data;
+
           })
           .catch(e => {console.log(e);});
       console.log(this.itemsClient);

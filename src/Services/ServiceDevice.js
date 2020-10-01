@@ -5,25 +5,20 @@ class ServiceDevice {
         return http.post("/device", null, {params: data});
     }
 
-    deviceByClientId(clientId) {
+    searchDeviceByClientId(clientId) {
         return http.get("/device/" + clientId)
     }
 
-    searchAnyParam(anyParam) {
+    searchDeviceAnyParam(anyParam) {
         return http.get("/device", {params: {"query": anyParam}});
     }
 
     searchDeviceNamelike(queryString) {
-        return http.get("device/namelike", {params: {queryString}});
+        return http.get("/device/namelike", {params: {queryString}});
     }
 
-    deviceByDeviceName(deviceName) {
-        return http.get("/devicename", {params: {"query": deviceName}});
-
-        searchDevice(clientLike, productLike, serialNumberLike)
-        {
-            return http.get("devicelike", {params: {clientLike, productLike, serialNumberLike}});
-        }
+    searchDeviceMultilike(clientLike, productLike, serialNumberLike) {
+        return http.get("/device/multilike", {params: {clientLike, productLike, serialNumberLike}});
     }
 }
 export default new ServiceDevice();

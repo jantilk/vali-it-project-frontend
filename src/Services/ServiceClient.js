@@ -5,12 +5,8 @@ class ServiceClient {
         return http.post("/client", data);
     }
 
-    clientByName(nameLike) {
-        return http.get("clientlike", {params: {nameLike}});
-    }
-
-    searchDevice(clientLike, productLike, serialNumberLike) {
-        return http.get("devicelike", {params: {clientLike, productLike, serialNumberLike}});
+    findClientByName(queryString) {
+        return http.get("/client/namelike", {params: {queryString}});
     }
 }
 
