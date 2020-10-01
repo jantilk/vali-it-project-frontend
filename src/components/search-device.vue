@@ -65,7 +65,7 @@ export default {
       if (this.client == "" && this.product == "" && this.serialNumber == "") {
         this.devices = [];
       } else {
-        ServiceDevice.searchDeviceMultilike(this.client, this.product, this.serialNumber)
+        ServiceDevice.searchDeviceMultilike(this.client, this.product, this.serialNumber, this.token)
             .then(response => {
               this.devices = response.data;
               console.log(response.data);

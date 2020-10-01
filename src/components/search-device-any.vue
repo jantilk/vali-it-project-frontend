@@ -54,7 +54,7 @@ export default {
       if (this.anyParam == "") {
         this.devices = [];
       } else {
-        ServiceDevice.searchDeviceAnyParam(this.anyParam)
+        ServiceDevice.searchDeviceAnyParam(this.anyParam, this.token)
             .then(response => {
               this.devices = response.data;
               console.log(response.data);

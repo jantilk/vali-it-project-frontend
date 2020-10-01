@@ -7,7 +7,7 @@ class ServiceTechnician {
     }
 
     loginTechnician(username, password) {
-        return http.get("/technician/logIn", {params: username, password});
+        return http.post("/technician/logIn", username, password);
     }
 }
 

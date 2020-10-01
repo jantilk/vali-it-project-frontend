@@ -47,10 +47,8 @@ export default {
       if (this.login.username != null && this.login.username != "") {
         ServiceTechnician.loginTechnician(data)
             .then((response) => {
-              console.log(response.data)
               if (response.data.status === true) {
                 this.token = response.data.token;
-                console.log(this.token);
               }
             })
             .catch(error => {

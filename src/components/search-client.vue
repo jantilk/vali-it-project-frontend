@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     searchClientByName() {
-      ServiceClient.findClientByName(this.name)
+      ServiceClient.findClientByName(this.name, this.token)
           .then(response => {
             this.clients = response.data;
             console.log(response.data);
