@@ -27,10 +27,6 @@
       <button class="btn btn-success float-right" @click="createMobileWO">Create</button>
       <button class="btn btn-danger float-left" @click="showCreatePageF">Cancel</button>
 
-      <br/>
-      <br/>
-      <autocomplete-client-device/>
-
     </div>
 </template>
 
@@ -39,11 +35,10 @@ import AutocompleteTechnician from "@/mobile/autocomplete-technician";
 import AutocompleteDevice from "@/mobile/autocomplete-device";
 import AutocompleteClient from "@/mobile/autocomplete-client";
 import ServiceWorkOrder from "@/Services/ServiceWorkOrder";
-import AutocompleteClientDevice from "@/mobile/autocomplete-client-device";
 
 export default {
   name: "autocomplete-wo",
-  components: {AutocompleteClientDevice, AutocompleteClient, AutocompleteDevice, AutocompleteTechnician},
+  components: {AutocompleteClient, AutocompleteDevice, AutocompleteTechnician},
 
   computed: {
     jobDescription: {
