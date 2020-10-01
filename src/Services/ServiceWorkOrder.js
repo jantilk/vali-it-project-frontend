@@ -25,9 +25,9 @@ class ServiceWorkOrder {
         return http.get("/workOrderStatus", {params: {"status":statusParamWO}})
     }
 
-    findWOspecificId(workOrderId) {
-        return http.get("/workOrderById", {params: {"id":workOrderId}})
-    }
+    // findWOspecificId(workOrderId) {
+    //     return http.get("/workOrderById", {params: {"id":workOrderId}})
+    // }
 
     searchWorkOrderSimultaneous(client, deviceName, product, technician, status){
         return http.get("/workOrderSimultaneousSearch", {params: {client, deviceName, product, technician, status}})
@@ -37,8 +37,12 @@ class ServiceWorkOrder {
         return http.get("/workOrderAll")
     }
 
-    changeTechnicianName(editedTechnicianName, workOrderId){
-        return http.put("updateWorkOrderTechnicianName", {params: {"technicianName":editedTechnicianName, workOrderId}});
+    changeStatus(workOrderId){
+        http.put("/updateWorkOrderStatus", null, {params: {"workOrderId":workOrderId}})
+    }
+
+    changeWorkOrderJobDescription(workOrderId, newJobDescription){
+        http.put("/updateWorkOrderJobDescription", null, {params: {"workOrderId":workOrderId,"newWorkOrderJobDescription":newJobDescription}})
     }
 
 
