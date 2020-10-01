@@ -51,24 +51,24 @@ export default {
     }
   },
 
-  mounted() {
-    ServiceTechnician.searchTechnicianNamelike('')
-        .then(response => {
-          this.itemsTechnician = response.data;
-        })
-        .catch(e => {console.log(e);});
-    console.log(this.itemsTechnician);
-  },
+  // mounted() {
+  //   ServiceTechnician.searchTechnicianNamelike('')
+  //       .then(response => {
+  //         this.itemsTechnician = response.data;
+  //       })
+  //       .catch(e => {console.log(e);});
+  //   console.log(this.itemsTechnician);
+  // },
 
   watch: {
-    searchTechnician (queryString) {
-      if (this.searchTechnician == "") {
-        // this.itemsTechnician = [];
-        this.selectTechnician = null;
-      } else {
-        this.searchTechnicianNamelike(queryString);
-      }
-    }
+    // searchTechnician (queryString) {
+    //   if (this.searchTechnician == "") {
+    //     // this.itemsTechnician = [];
+    //     this.selectTechnician = "";
+    //   } else {
+    //     this.searchTechnicianNamelike(queryString);
+    //   }
+    // }
   },
 
   methods: {

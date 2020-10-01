@@ -38,7 +38,7 @@
 
 
 <script>
-import ServiceClient from "@/Services/ServiceClient";
+import ServiceDevice from "@/Services/ServiceDevice";
 
 export default {
   name: "search-device",
@@ -55,7 +55,7 @@ export default {
       if (this.client == "" && this.product == "" && this.serialNumber == "") {
         this.devices = [];
       } else {
-        ServiceClient.searchDevice(this.client, this.product, this.serialNumber)
+        ServiceDevice.searchDeviceMultilike(this.client, this.product, this.serialNumber)
             .then(response => {
               this.devices = response.data;
               console.log(response.data);

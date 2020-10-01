@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input v-model="name" class="form-control" placeholder="Search by name" type="text" v-on:input="clientByName"/>
+    <input v-model="name" class="form-control" placeholder="Search by name" type="text" v-on:input="searchClientByName"/>
     <div>
       <ul>
         <li v-for="client in clients">
@@ -39,8 +39,8 @@ export default {
     };
   },
   methods: {
-    clientByName() {
-      ServiceClient.clientByName(this.name)
+    searchClientByName() {
+      ServiceClient.findClientByName(this.name)
           .then(response => {
             this.clients = response.data;
             console.log(response.data);
@@ -50,7 +50,7 @@ export default {
           });
     },
     deviceByClientId(clientId) {
-      ServiceDevice.deviceByClientId(clientId)
+      ServiceDevice.searchDeviceByClientId(clientId)
           .then(response => {
             this.devices = response.data;
           })
