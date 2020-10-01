@@ -24,7 +24,15 @@ import ServiceClient from "@/Services/ServiceClient";
 export default {
   name: "autocomplete-client",
   computed: {
-    selectClient: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+      selectClient: {
       get() {
         return this.$store.state.selectClient;
       },
@@ -104,7 +112,7 @@ export default {
   methods: {
     // select client logic
     searchClientWatcher (value) {
-      ServiceClient.findClientByName(value)
+      ServiceClient.findClientByName(value, this.token)
           .then(response => {
             this.itemsClient = response.data;
 

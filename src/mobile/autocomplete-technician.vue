@@ -48,7 +48,15 @@ export default {
       set(newValue) {
         this.$store.commit("updateSearchTechnician", newValue);
       }
-    }
+    },
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
   },
 
   // mounted() {
@@ -74,7 +82,7 @@ export default {
   methods: {
     // select client logic
     searchTechnicianNamelike (queryString) {
-      ServiceTechnician.searchTechnicianNamelike(queryString)
+      ServiceTechnician.searchTechnicianNamelike(queryString, this.token)
           .then(response => {
             this.itemsTechnician = response.data;
           })

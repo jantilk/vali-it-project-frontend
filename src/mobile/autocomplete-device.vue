@@ -24,6 +24,14 @@ import ServiceDevice from "@/Services/ServiceDevice";
 export default {
   name: "autocomplete-device",
   computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
     selectClient: {
       get() {
         return this.$store.state.selectClient;
@@ -103,7 +111,7 @@ export default {
 
   methods: {
     searchDeviceWatcher (queryString) {
-      ServiceDevice.searchDeviceNamelike(queryString)
+      ServiceDevice.searchDeviceNamelike(queryString, this.token)
           .then(response => {
             this.itemsDevice = response.data;
 
