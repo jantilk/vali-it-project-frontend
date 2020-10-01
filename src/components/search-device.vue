@@ -50,12 +50,22 @@ export default {
       serialNumber: "",
     };
   },
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
   methods: {
     searchDevice() {
       if (this.client == "" && this.product == "" && this.serialNumber == "") {
         this.devices = [];
       } else {
-        ServiceClient.searchDevice(this.client, this.product, this.serialNumber)
+        ServiceClient.searchDevice(this.client, this.product, this.serialNumber, this.token)
             .then(response => {
               this.devices = response.data;
               console.log(response.data);

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--    <div v-if="!submitted">-->
     <div class="form-group">
       <label for="username">Username</label>
       <input id="username" v-model="login.username" class="form-control" name="name" type="text"/>
@@ -10,20 +9,12 @@
       <input id="stock" v-model="login.password" class="form-control" name="stock" type="password">
     </div>
     <div class="col-md-3">
-      <!--      <router-link to="/client">-->
-      <button id="login" class="btn btn-success" @click="technicianLogin">Login
-        <router-link v-if="userpass" to="/client"></router-link>
-      </button>
-      <!--      </router-link>-->
-
+      <button id="login" class="btn btn-success" @click="technicianLogin">Login</button>
     </div>
   </div>
-  <!--  </div>-->
 </template>
 
 <script>
-
-
 import ServiceTechnician from "@/Services/ServiceTechnician";
 
 export default {
@@ -35,7 +26,6 @@ export default {
         username: "",
         password: ""
       },
-      userpass: false
     };
   },
   computed: {
@@ -58,13 +48,11 @@ export default {
         ServiceTechnician.loginTechnician(data)
             .then((response) => {
               console.log(response.data)
-
-                if (response.data.status === true) {
-                  this.token = response.data.token;
-                  console.log(this.token);
-                  // this.userpass = true;
-                }
-              })
+              if (response.data.status === true) {
+                this.token = response.data.token;
+                console.log(this.token);
+              }
+            })
             .catch(error => {
               console.log(error);
             });

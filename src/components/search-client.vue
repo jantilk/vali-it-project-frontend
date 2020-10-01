@@ -38,9 +38,19 @@ export default {
       name: ""
     };
   },
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
   methods: {
     clientByName() {
-      ServiceClient.clientByName(this.name)
+      ServiceClient.clientByName(this.name, this.token)
           .then(response => {
             this.clients = response.data;
             console.log(response.data);
@@ -49,15 +59,6 @@ export default {
             console.log(e);
           });
     },
-    deviceByClientId(clientId) {
-      ServiceDevice.deviceByClientId(clientId)
-          .then(response => {
-            this.devices = response.data;
-          })
-          .catch(e => {
-            console.log(e);
-          });
-    }
   },
 };
 </script>

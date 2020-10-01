@@ -39,12 +39,22 @@ export default {
       anyParam: null
     };
   },
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
   methods: {
     searchAnyParam() {
       if (this.anyParam == "") {
         this.devices = [];
       } else {
-        ServiceDevice.searchAnyParam(this.anyParam)
+        ServiceDevice.searchAnyParam(this.anyParam, this.token)
             .then(response => {
               this.devices = response.data;
               console.log(response.data);

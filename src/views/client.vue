@@ -37,11 +37,21 @@ export default {
       submitted: false
     };
   },
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
   methods: {
     createClient() {
       var data = {name: this.client.name};
       if (this.client.name != null && this.client.name != "") {
-        ServiceClient.create(data)
+        ServiceClient.create(data, this.token)
             .then(this.submitted = true)
             .catch(e => {
               console.log(e);

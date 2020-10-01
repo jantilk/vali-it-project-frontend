@@ -1,16 +1,26 @@
 import http from "../http-common";
 
 class ServiceClient {
-    create(data) {
-        return http.post("/client", data);
+    create(data, token) {
+        return http.post("/client", data, {
+            headers: {
+                'Authorization': "Bearer " + token
+            }});
     }
 
-    clientByName(nameLike) {
-        return http.get("clientlike", {params: {nameLike}});
+    clientByName(nameLike, token) {
+        return http.get("clientlike", {
+            params: {nameLike},
+            headers: {
+                'Authorization': "Bearer " + token
+            }});
     }
 
-    searchDevice(clientLike, productLike, serialNumberLike) {
-        return http.get("devicelike", {params: {clientLike, productLike, serialNumberLike}});
+    searchDevice(clientLike, productLike, serialNumberLike, token) {
+        return http.get("devicelike", {
+            params: {clientLike, productLike, serialNumberLike},
+            headers: {'Authorization': "Bearer " + token}
+        });
     }
 }
 
