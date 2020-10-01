@@ -7,15 +7,15 @@
         <div v-if="!submitted">
           <div class="form-group">
             <label for="name">Product Name</label>
-            <input type="text" class="form-control" id="name" required v-model="product.name" name="name"/>
+            <input id="name" v-model="product.name" class="form-control" name="name" required type="text"/>
           </div>
           <div class="form-group">
             <label for="stock">Stock</label>
-            <input type="number" class="form-control" id="stock" required v-model="product.stock" name="stock">
+            <input id="stock" v-model="product.stock" class="form-control" name="stock" required type="number">
           </div>
 
 
-          <button @click="createProduct" class="btn btn-success">Create</button>
+          <button class="btn btn-success" @click="createProduct">Create</button>
         </div>
         <div v-else>
           <h4>Product created successfully!</h4>
@@ -47,23 +47,38 @@ export default {
       createNewButton: false
     };
   },
-  methods:{
-    createProduct(){
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
+  methods: {
+    createProduct() {
       let data = {
         name: this.product.name,
         stock: this.product.stock
       };
-      if (this.product.name != null && this.product.name != ""){
-      ServiceProduct.createProduct(data)
-            .then(this.submitted = true)
-            .then(response => console.log(response.data))
-            .catch(e => {console.log(e);});
-    }},
+      if (this.product.name != null && this.product.name != "" && this.product.stock != null) {
+        ServiceProduct.createProduct(data, this.token)
+            .then(response => {
+              console.log(response.data)
+              this.submitted = true;
+            })
+            .catch(e => {
+              console.log(e);
+            });
+      }
+    },
     newProduct() {
       this.submitted = false;
       this.product = {};
     },
-    createNewProduct(){
+    createNewProduct() {
       this.createNewButton = true;
       this.product = {};
     }

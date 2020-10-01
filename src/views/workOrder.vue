@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <div class="form-group">
       <search-workOrder></search-workOrder>
@@ -19,31 +18,18 @@
                    name="jobDescription"/>
           </div>
           <div class="form-group">
-
-
-
-
-
-
             <label for="deviceName">Device name</label>
             <input type="text" class="form-control" id="deviceName" required v-model="workOrder.deviceName"
                    name="deviceName"/>
           </div>
-
           <div class="form-group">
             <label for="technicianName">Technician name</label>
             <input type="text" class="form-control" id="technicianName" required v-model="workOrder.technicianName"
                    name="technicianName"/>
           </div>
-          <!--        <div class="form-group">-->
-          <!--          <label for="productName">Product name</label>-->
-          <!--          <input type="text" class="form-control" id="productName" required v-model="workOrder.productName"-->
-          <!--                 name="productName"/>-->
-          <!--        </div>-->
-
-            <div style="color:#00c4ff">
-              <button @click="addConsumable">+ consumable</button>
-            </div>
+          <div style="color:#00c4ff">
+            <button @click="addConsumable">+ consumable</button>
+          </div>
           <br>
           <div v-if="optionForConsumable">
           <div class="form-group">
@@ -55,7 +41,6 @@
             <span>Consumable quantity: {{ this.consumableAmount }}</span>
           </div>
           </div>
-
           <!--          This is a button that shows only when first consumable is inserted. If it's pressed it will show another consumable input-->
           <div v-if="optionForAnotherConsumable">
             <div style="color:#00c4ff">
@@ -63,7 +48,6 @@
             </div>
             <br>
           </div>
-
           <!--          This input field only shows if the user has chosen to add another consumable-->
           <div v-if="AddExtraConsumable">
             <div class="form-group">
@@ -113,7 +97,6 @@
           <button class="btn btn-success" @click="newWorkOrder">Create another</button>
         </div>
         <br>
-
       </div>
 
       <div v-else>

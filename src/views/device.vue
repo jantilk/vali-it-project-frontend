@@ -63,6 +63,16 @@ export default {
     this.device = {}
     this.device.client = this.$route.params.id;
   },
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
   methods: {
     createDevice() {
       let data = {
@@ -71,13 +81,11 @@ export default {
         counter: this.device.counter,
         product: this.device.product,
       };
-      ServiceDevice.createDevice(data)
-          .then(this.submitted = true)
-          .then(response => console.log(response.data))
-          // .then(response => {
-          //   // this.client.id = response.data.id;
-          //   // console.log(response.data);
-          // })
+      ServiceDevice.createDevice(data, this.token)
+          .then(response => {
+            console.log(response.data);
+            this.submitted = true;
+          })
           .catch(e => {
             console.log(e);
           });

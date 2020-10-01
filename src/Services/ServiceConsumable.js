@@ -1,8 +1,12 @@
 import http from "../http-common";
 
 class ServiceConsumable {
-    createConsumable(data) {
-        return http.post("/consumable", data);
+    createConsumable(data, token) {
+        console.log(token);
+        return http.post("/consumable", data, {
+            headers: {
+            'Authorization': "Bearer " + token
+            }});
     }
 }
 

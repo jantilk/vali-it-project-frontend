@@ -7,15 +7,15 @@
         <div v-if="!submitted">
           <div class="form-group">
             <label for="name">Consumable Name</label>
-            <input type="text" class="form-control" id="name" required v-model="consumable.name" name="name"/>
+            <input id="name" v-model="consumable.name" class="form-control" name="name" required type="text"/>
           </div>
           <div class="form-group">
             <label for="stock">Stock</label>
-            <input type="number" class="form-control" id="stock" required v-model="consumable.stock" name="stock">
+            <input id="stock" v-model="consumable.stock" class="form-control" name="stock" required type="number">
           </div>
 
 
-          <button @click="createConsumable" class="btn btn-success">Create</button>
+          <button class="btn btn-success" @click="createConsumable">Create</button>
         </div>
         <div v-else>
           <h4>Consumable created successfully!</h4>
@@ -47,23 +47,38 @@ export default {
       createNewButton: false
     };
   },
-  methods:{
-    createConsumable(){
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
+  methods: {
+    createConsumable() {
       let data = {
         name: this.consumable.name,
         stock: this.consumable.stock
       };
-      if (this.consumable.name != null && this.consumable.name != ""){
-      ServiceConsumable.createConsumable(data)
-            .then(this.submitted = true)
-            .then(response => console.log(response.data))
-            .catch(e => {console.log(e);});
-    }},
+      if (this.consumable.name != null && this.consumable.name != "" && this.consumable.stock != null) {
+        ServiceConsumable.createConsumable(data, this.token)
+            .then(response => {
+              console.log(response.data)
+              this.submitted = true;
+            })
+            .catch(e => {
+              console.log(e);
+            });
+      }
+    },
     newConsumable() {
       this.submitted = false;
       this.consumable = {};
     },
-    createNewConsumable(){
+    createNewConsumable() {
       this.createNewButton = true;
       this.consumable = {};
     }

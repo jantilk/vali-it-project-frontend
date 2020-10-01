@@ -50,6 +50,16 @@ export default {
       serialNumber: "",
     };
   },
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
   methods: {
     searchDevice() {
       if (this.client == "" && this.product == "" && this.serialNumber == "") {
