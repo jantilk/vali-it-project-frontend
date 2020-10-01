@@ -27,20 +27,17 @@
           <li class="list-group-item" v-for="workOrder in workOrders">
 
             Work Order ID:
-            <button @click="showSpecific(workOrder.id)" class="btn btn-success">{{ workOrder.id }}</button>
+            <button @click="showSpecific(workOrder.workOrderId, workOrder.clientName, workOrder.technicianName, workOrder.status, workOrder.deviceName, workOrder.productName,
+             workOrder.consumableName, workOrder.jobDescription)" class="btn btn-success">{{ workOrder.workOrderId }}</button>
             <br>
             Client name:
             {{ workOrder.clientName }}
             <br>
             Technician name:
-            {{ workOrder.technicianName }} <button style="color:#00c4ff" @click="changeTechnicianSelected=true">edit</button>
-            <div v-if="changeTechnicianSelected">
-            <input type="text" class="form-control" placeholder="change technician name"
-                   v-model="editedTechnicianName" v-on:input="changeTechnicianName(workOrder.id, editedTechnicianName)"/>
-            </div>
+            {{ workOrder.technicianName }}
             <br>
             Work done:
-            {{ workOrder.status }} <button style="color:#00c4ff" @click="">edit</button>
+            {{ workOrder.status }}
             <br>
             Device name:
             {{ workOrder.deviceName }}
@@ -52,7 +49,7 @@
             {{ workOrder.consumableName }}
             <br>
             Job Description:
-            {{ workOrder.jobDescription }} <button style="color:#00c4ff" @click="">edit</button>
+            {{ workOrder.jobDescription }}
 
           </li>
         </ul>
@@ -62,41 +59,60 @@
 
         <ul class="list-group">
 
-          <li class="list-group-item" v-for="workOrder in workOrders">
+          <li class="list-group-item">
 
             ID:
-            {{ workOrder.id }}
+            {{ this.workOrderId }}
             <br>
-            Technician ID:
-            {{ workOrder.technicianName }}
+            Client name:
+            {{ this.workOrderClientName }}
+            <br>
+            Technician Name:
+            {{ this.workOrderTechnicianName }}
+
             <br>
             Work done:
-            {{ workOrder.status }}
+            {{ this.workOrderStatus }}
+            <button style="color:#00c4ff" @click="changeStatusSelectedF">
+              <v-img
+                alt="Vuetify Logo"
+                class="shrink mr-2"
+                contain
+                src="@/assets/edit.png"
+                width="20"
+            /></button>
+            <div v-if="editStatusSelected">
+              <button @click="changeWorkOrderStatus" class="btn btn-info">Change status</button>
+<!--              <span>New status: {{ this.workOrderStatus }}</span>-->
+
+            </div>
             <br>
-            Device ID:
-            {{ workOrder.name }}
+            Device name:
+            {{ this.workOrderDeviceName }}
             <br>
-            Product ID:
-            {{ workOrder.productName }}
+            Consumable name:
+            {{ this.workOrderConsumableName }}
             <br>
-<!--            Consumable ID:-->
-<!--            {{ workOrder.consumableId }}-->
+            Job Description:
+            {{ this.workOrderJobDescription }}
+            <button style="color:#00c4ff" @click="changeJobDescriptionSelectedF">
+              <v-img
+                alt="Vuetify Logo"
+                class="shrink mr-2"
+                contain
+                src="@/assets/edit.png"
+                width="20"
+            />
+            </button>
+            <div v-if="editJobDescriptionSelected">
+              <input type="text" placeholder="add new descript. + enter" v-on:keyup.enter="changeJobDescriptionIfSelectedF" v-model="newWOdescription"/>
+              <br>
 
 
-<!--            <br>-->
-<!--            Job Description:-->
-<!--            {{ workOrder.jobDescription }}-->
+
+            </div>
 
 
-<!--          </li>-->
-<!--        </ul>-->
-
-<!--        <ul class="list-group">-->
-<!--          <li class="list-group-item" v-for="workOrderConsumable in workOrderConsumables">-->
-
-<!--            Consumables:-->
-<!--                        Work Order Consumable:-->
-<!--                        {{ workOrderConsumable.WorkOrderconsumableId }}-->
 
           </li>
         </ul>
@@ -119,8 +135,16 @@ export default {
       statusParamWO: null,
       woSelected: false,
       workOrderId: null,
-      changeTechnicianSelected: false,
-      editedTechnicianName:null,
+      workOrderClientName:null,
+      workOrderTechnicianName:null,
+      workOrderStatus:null,
+      workOrderDeviceName:null,
+      workOrderProductName:null,
+      workOrderConsumableName:null,
+      workOrderJobDescription:null,
+      editStatusSelected:false,
+      editJobDescriptionSelected:false,
+      newWOdescription:"",
       workOrderConsumables: []
     };
   },
@@ -132,7 +156,7 @@ export default {
         ServiceWorkOrder.findByQuery(this.anyParamWO)
             .then(response => {
               this.workOrders = response.data;
-              // console.log(response.data);
+              console.log(response.data);
             })
             .catch(e => {
               console.log(e);
@@ -158,30 +182,52 @@ export default {
       ServiceWorkOrder.findNotDone(this.statusParamWO)
           .then(response => {
             this.workOrders = response.data;
-            // console.log(response.data);
+
+            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
           });
+      this.workOrderId=this.workOrders.id
     },
-    showSpecific(workOrderId) {
+    showSpecific(workOrderId, workOrderClientName, workOrderTechnicianName, workOrderStatus, workOrderDeviceName, workOrderProductName,
+    workOrderConsumableName, workOrderJobDescription) {
       this.woSelected = true;
       this.workOrderId = workOrderId;
-      ServiceWorkOrder.findWOspecificId(workOrderId)
-          .then(response => {
-            this.workOrders = response.data;
-            // console.log(response.data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
+      this.workOrderClientName=workOrderClientName;
+      this.workOrderTechnicianName=workOrderTechnicianName;
+      this.workOrderStatus=workOrderStatus;
+      this.workOrderDeviceName=workOrderDeviceName;
+      this.workOrderProductName=workOrderProductName;
+      this.workOrderConsumableName=workOrderConsumableName;
+      this.workOrderJobDescription=workOrderJobDescription;
+
+      // ServiceWorkOrder.findWOspecificId(workOrderId)
+      //     .then(response => {
+      //       this.workOrders = response.data;
+      //       // console.log(response.data);
+      //     })
+      //     .catch(e => {
+      //       console.log(e);
+      //     });
     },
-    changeTechnicianName(workOrderId, editedTechnicianName){
-      this.editedTechnicianName = editedTechnicianName;
-      this.workOrderId = workOrderId;
-      ServiceWorkOrder.changeTechnicianName(this.workOrderId, this.editedTechnicianName)
-    }
-  }
+    changeStatusSelectedF(){
+      this.editStatusSelected=true;
+    },
+    changeWorkOrderStatus(){
+      this.workOrderStatus=!this.workOrderStatus;
+      ServiceWorkOrder.changeStatus(this.workOrderId)
+      this.editStatusSelected=false;
+    },
+    changeJobDescriptionSelectedF(){
+      this.editJobDescriptionSelected=true;
+
+    },
+    changeJobDescriptionIfSelectedF(){
+      this.workOrderJobDescription=this.newWOdescription;
+      ServiceWorkOrder.changeWorkOrderJobDescription(this.workOrderId, this.newWOdescription)
+      this.editJobDescriptionSelected=false;
+  }}
 };
 </script>
 
