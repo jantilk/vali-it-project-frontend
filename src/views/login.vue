@@ -49,6 +49,7 @@ export default {
             .then((response) => {
               if (response.data.status === true) {
                 this.token = response.data.token;
+                  this.$router.push({name: 'device'})
               }
             })
             .catch(error => {
