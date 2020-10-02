@@ -16,6 +16,7 @@
 
 <script>
 import ServiceTechnician from "@/Services/ServiceTechnician";
+import ServiceWorkOrder from "@/Services/ServiceWorkOrder";
 
 export default {
   name: "technician",
@@ -37,6 +38,14 @@ export default {
         this.$store.commit("updateToken", newValue);
       }
     },
+    loadWOmobilelist: {
+      get() {
+        return this.$store.state.loadWOmobilelist;
+      },
+      set(newValue) {
+        this.$store.commit("updateloadWOmobilelist", newValue);
+      }
+    },
   },
   methods: {
     technicianLogin() {
@@ -49,7 +58,8 @@ export default {
             .then((response) => {
               if (response.data.status === true) {
                 this.token = response.data.token;
-                  this.$router.push({name: 'device'})
+                this.$router.push({name: 'device'});
+                this.loadWOmobilelist = true;
               }
             })
             .catch(error => {

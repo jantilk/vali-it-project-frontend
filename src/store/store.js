@@ -29,6 +29,7 @@ export default new Vuex.Store({
     allWo: [],
     showCreatePage: false,
     showWoListPage: true,
+    loadWOmobilelist: false
 
   },
   mutations: {
@@ -88,6 +89,9 @@ export default new Vuex.Store({
     },
     updateToken (state, newValue) {
       state.token = newValue;
+    },
+    updateloadWOmobilelist (state, newValue) {
+      state.loadWOmobilelist = newValue;
     }
   }
 })
