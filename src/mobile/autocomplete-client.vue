@@ -32,7 +32,7 @@ export default {
         this.$store.commit("updateToken", newValue);
       }
     },
-      selectClient: {
+    selectClient: {
       get() {
         return this.$store.state.selectClient;
       },
@@ -101,7 +101,6 @@ export default {
   watch: {
     searchClient (queryString) {
       if (this.searchClient == "") {
-        this.itemsDevice = [];
         this.selectDevice = null;
       } else {
         this.searchClientWatcher(queryString);

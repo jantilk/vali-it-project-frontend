@@ -59,35 +59,19 @@ export default {
     },
   },
 
-  // mounted() {
-  //   ServiceTechnician.searchTechnicianNamelike('')
-  //       .then(response => {
-  //         this.itemsTechnician = response.data;
-  //       })
-  //       .catch(e => {console.log(e);});
-  //   console.log(this.itemsTechnician);
-  // },
-
   watch: {
-    // searchTechnician (queryString) {
-    //   if (this.searchTechnician == "") {
-    //     // this.itemsTechnician = [];
-    //     this.selectTechnician = "";
-    //   } else {
-    //     this.searchTechnicianNamelike(queryString);
-    //   }
-    // }
+    searchTechnician (queryString) {
+        this.searchTechnicianNamelike(queryString);
+    }
   },
 
   methods: {
-    // select client logic
     searchTechnicianNamelike (queryString) {
       ServiceTechnician.searchTechnicianNamelike(queryString, this.token)
           .then(response => {
             this.itemsTechnician = response.data;
           })
           .catch(e => {console.log(e);});
-      console.log(this.itemsTechnician);
     },
     getTechnicianName: function (el) {
       return el.name;

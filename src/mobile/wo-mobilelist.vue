@@ -28,6 +28,14 @@ export default {
   }),
   components: {AutocompleteTechnician},
   computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
     allWo: {
       get() {
         return this.$store.state.allWo;
@@ -79,7 +87,7 @@ export default {
   },
 
   mounted() {
-    ServiceWorkOrder.findAllWo()
+    ServiceWorkOrder.findAllWo(this.token)
         .then(response => {
           this.allWo = response.data;
         })
