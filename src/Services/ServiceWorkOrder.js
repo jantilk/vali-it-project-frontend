@@ -1,9 +1,14 @@
 import http from "../http-common";
 
 class ServiceWorkOrder {
-    create(data, consumableAmount, consumableName2, consumableAmount2, consumableName3, consumableAmount3) {
-        return http.post("/createWO", data, {params: {"consumableAmount":consumableAmount, "consumable2":consumableName2,
-                "consumableAmount2":consumableAmount2, "consumable3":consumableName3, "consumableAmount3":consumableAmount3}});
+    create(data, consumableAmount, consumableName2, consumableAmount2, consumableName3, consumableAmount3, token) {
+        return http.post("/createWO", data, {
+            params: {"consumableAmount":consumableAmount, "consumable2":consumableName2,
+                "consumableAmount2":consumableAmount2, "consumable3":consumableName3, "consumableAmount3":consumableAmount3
+            },
+            headers: {
+                'Authorization': "Bearer " + token
+            }});
     }
 
     createMobileWO(data, token) {
@@ -22,20 +27,34 @@ class ServiceWorkOrder {
         return http.get("/getAllWorkOrders")
     }
 
-    findByQuery(anyParamWO) {
-        return http.get("/workOrder", {params: {"query":anyParamWO}})
+    findByQuery(anyParamWO, token) {
+        return http.get("/workOrder", {
+            params: {"query":anyParamWO},
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+        })
     }
 
-    findNotDone(statusParamWO) {
-        return http.get("/workOrderStatus", {params: {"status":statusParamWO}})
+    findNotDone(statusParamWO, token) {
+        return http.get("/workOrderStatus", {
+            params: {"status":statusParamWO},
+
+            headers: {
+                'Authorization': "Bearer " + token
+            }})
     }
 
     // findWOspecificId(workOrderId) {
     //     return http.get("/workOrderById", {params: {"id":workOrderId}})
     // }
 
-    searchWorkOrderSimultaneous(client, deviceName, product, technician, status){
-        return http.get("/workOrderSimultaneousSearch", {params: {client, deviceName, product, technician, status}})
+    searchWorkOrderSimultaneous(client, deviceName, product, technician, status, token){
+        return http.get("/workOrderSimultaneousSearch", {
+            params: {client, deviceName, product, technician, status},
+            headers: {
+                'Authorization': "Bearer " + token
+            }})
     }
 
     findAllWo(token){
@@ -47,12 +66,20 @@ class ServiceWorkOrder {
         });
     }
 
-    changeStatus(workOrderId){
-        http.put("/updateWorkOrderStatus", null, {params: {"workOrderId":workOrderId}})
+    changeStatus(workOrderId, token){
+        http.put("/updateWorkOrderStatus", null, {
+            params: {"workOrderId":workOrderId},
+            headers: {
+                'Authorization': "Bearer " + token
+            }})
     }
 
-    changeWorkOrderJobDescription(workOrderId, newJobDescription){
-        http.put("/updateWorkOrderJobDescription", null, {params: {"workOrderId":workOrderId,"newWorkOrderJobDescription":newJobDescription}})
+    changeWorkOrderJobDescription(workOrderId, newJobDescription, token){
+        http.put("/updateWorkOrderJobDescription", null, {
+            params: {"workOrderId":workOrderId,"newWorkOrderJobDescription":newJobDescription},
+            headers: {
+                'Authorization': "Bearer " + token
+            }})
     }
 
 

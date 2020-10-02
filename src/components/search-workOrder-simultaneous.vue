@@ -168,6 +168,16 @@ export default {
       statusParamSimultaneous: null
     };
   },
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
   methods: {
     searchWorkOrderSimultaneous() {
       this.searchAllParam = null
@@ -175,7 +185,7 @@ export default {
         this.workOrders = []
       } else {
         this.workOrders = [];
-        ServiceWorkOrder.searchWorkOrderSimultaneous(this.clientName, this.deviceName, this.productName, this.technicianName, this.statusParamSimultaneous)
+        ServiceWorkOrder.searchWorkOrderSimultaneous(this.clientName, this.deviceName, this.productName, this.technicianName, this.statusParamSimultaneous, this.token)
             .then(response => {
               this.workOrders = response.data;
               console.log(response.data);
@@ -208,7 +218,7 @@ export default {
     },
     changeWorkOrderStatus() {
       this.workOrderStatus = !this.workOrderStatus;
-      ServiceWorkOrder.changeStatus(this.workOrderId)
+      ServiceWorkOrder.changeStatus(this.workOrderId, this.token)
       this.editStatusSelected = false;
     },
     changeJobDescriptionSelectedF() {
@@ -216,7 +226,7 @@ export default {
     },
     changeJobDescriptionIfSelectedF() {
       this.workOrderJobDescription = this.newWOdescription;
-      ServiceWorkOrder.changeWorkOrderJobDescription(this.workOrderId, this.newWOdescription)
+      ServiceWorkOrder.changeWorkOrderJobDescription(this.workOrderId, this.newWOdescription, this.token)
       this.editJobDescriptionSelected = false;
     },
     searchAll() {
@@ -226,7 +236,7 @@ export default {
         this.deviceName = "";
         this.technicianName = "";
         this.clientName = "";
-        ServiceWorkOrder.findAllWo()
+        ServiceWorkOrder.findAllWo(this.token)
             .then(response => {
               this.workOrders = response.data;
               // console.log(response.data);

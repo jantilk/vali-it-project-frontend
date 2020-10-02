@@ -9,7 +9,6 @@
           src="@/assets/logo_bird.png"
           width="40"
         />
-
         <div class="d-none d-sm-flex" style="margin: 0px 10px">
           <router-link to="/client" style="color:cadetblue; margin: 0px 10px">Client</router-link> |
           <router-link to="/device" style="color:cadetblue; margin: 0px 10px">Device</router-link> |
@@ -18,7 +17,7 @@
           <router-link to="/consumable" style="color:cadetblue; margin: 0px 10px">Consumable</router-link> |
           <router-link to="/login" style="color:cadetblue; margin-left: 10px">Login</router-link>
         </div>
-        <button @click.prevent="playSound('@/assets/sheep.mp3')">
+        <button @click.prevent="playSound('https://iil.lillill.li/partial/0s_to_41s_Shaun_The_Sheep_Theme.mp3')">
         <v-img style="margin-left: 20px"
             alt="Vuetify Name"
             class="shrink mr-2"
@@ -27,7 +26,6 @@
             width="40">
         </v-img>
         </button>
-
       </div>
     </v-app-bar>
 
@@ -54,7 +52,6 @@ export default {
   },
 
   data: () => ({
-    //
   }),
   methods: {
     playSound (sound) {
