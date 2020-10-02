@@ -6,8 +6,13 @@ class ServiceWorkOrder {
                 "consumableAmount2":consumableAmount2, "consumable3":consumableName3, "consumableAmount3":consumableAmount3}});
     }
 
-    createMobileWO(data) {
-        return http.post("device/mobilewo", data);
+    createMobileWO(data, token) {
+        return http.post("device/mobilewo", data, {
+            params: data,
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+        });
     }
 
     // getAll() {
@@ -33,8 +38,13 @@ class ServiceWorkOrder {
         return http.get("/workOrderSimultaneousSearch", {params: {client, deviceName, product, technician, status}})
     }
 
-    findAllWo(){
-        return http.get("/workOrderAll")
+    findAllWo(token){
+        return http.get("workOrderAll", {
+            params: {},
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+        });
     }
 
     changeTechnicianName(editedTechnicianName, workOrderId){

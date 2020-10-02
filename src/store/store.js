@@ -29,6 +29,7 @@ export default new Vuex.Store({
     allWo: [],
     showCreatePage: false,
     showWoListPage: true,
+
   },
   mutations: {
     updateSelectTechnician (state, newValue) {
@@ -88,5 +89,5 @@ export default new Vuex.Store({
     updateToken (state, newValue) {
       state.token = newValue;
     }
-  },
+  }
 })

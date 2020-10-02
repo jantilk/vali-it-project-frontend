@@ -2,8 +2,13 @@ import http from "../http-common";
 
 class ServiceTechnician {
 
-    searchTechnicianNamelike(queryString) {
-        return http.get("technician/namelike", {params: {queryString}});
+    searchTechnicianNamelike(queryString, token) {
+        return http.get("technician/namelike", {
+            params: {queryString},
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+        });
     }
 
     loginTechnician(username, password) {
