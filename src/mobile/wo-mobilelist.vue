@@ -83,17 +83,33 @@ export default {
       set(newValue) {
         this.$store.commit("updateSearchTechnician", newValue);
       }
-    }
+    },
+    loadWOmobilelist: {
+      get() {
+        return this.$store.state.loadWOmobilelist;
+      },
+      set(newValue) {
+        this.$store.commit("updateloadWOmobilelist", newValue);
+      }
+    },
   },
 
-  mounted() {
-    ServiceWorkOrder.findAllWoMobile(this.token)
-        .then(response => {
-          this.allWo = response.data;
-        })
-        .catch(e => {console.log(e);});
-    console.log(this.allWo);
+  watch: {
+    loadWOmobilelist () {
+      if (this.loadWOmobilelist == true) {
+        ServiceWorkOrder.findAllWoMobile(this.token)
+            .then(response => {
+              this.allWo = response.data;
+            })
+            .catch(e => {console.log(e);});
+
+      }
+    }
   },
+  // mounted() {
+  //
+  //   console.log(this.allWo);
+  // },
 
   methods: {
     showCreatePageF () {
