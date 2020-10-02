@@ -10,7 +10,7 @@
           class="mx-4"
           flat
           hide-no-data
-          hide-detailsBCS
+          hide-details
           label="Find Device"
           solo-inverted
       ></v-autocomplete>
@@ -72,6 +72,14 @@ export default {
         this.$store.commit("updateItemsDevice", newValue);
       }
     },
+    deviceFilterByClient: {
+      get() {
+        return this.$store.state.deviceFilterByClient;
+      },
+      set(newValue) {
+        this.$store.commit("updateDeviceFilterByClient", newValue);
+      }
+    },
     searchDevice: {
       get() {
         return this.$store.state.searchDevice;
@@ -88,24 +96,18 @@ export default {
         this.$store.commit("updateDeviceId", newValue);
       }
     },
-    clientId: {
-      get() {
-        return this.$store.state.clientId;
-      },
-      set(newValue) {
-        this.$store.commit("updateClientId", newValue);
-      }
-    }
   },
 
   watch: {
     searchDevice (queryString) {
       if (this.searchDevice == "") {
-        this.itemsClient = [];
-        this.selectClient = null;
+        // this.selectClient = null;
       } else {
         this.searchDeviceWatcher(queryString);
       }
+    },
+    selectClient () {
+        this.searchDeviceWatcher(null);
     }
   },
 
@@ -116,8 +118,8 @@ export default {
             this.itemsDevice = response.data;
 
             if(this.selectClient){
-              this.itemsDevice = this.itemsDevice.filter(item => (item.clientId == this.clientId))
-            } else {
+              this.itemsDevice = this.itemsDevice.filter(item => (item.clientId == this.selectClient))
+            } else if (this.selectDevice) {
               this.selectClient = this.selectDevice.clientId;
             }
 

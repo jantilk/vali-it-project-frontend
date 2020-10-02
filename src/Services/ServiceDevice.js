@@ -28,14 +28,14 @@ class ServiceDevice {
 
 
 
-        searchDeviceMultilike(clientLike, productLike, serialNumberLike, token)
-        {
-            return http.get("device/multilike", {
-                params: {clientLike, productLike, serialNumberLike},
-                headers: {
-                    'Authorization': "Bearer " + token
-                }});
-        }
+    searchDeviceMultilike(clientLike, productLike, serialNumberLike, token)
+    {
+        return http.get("device/multilike", {
+            params: {clientLike, productLike, serialNumberLike},
+            headers: {
+                'Authorization': "Bearer " + token
+            }});
+    }
 
 }
 export default new ServiceDevice();

@@ -41,6 +41,14 @@ export default {
   components: {AutocompleteClient, AutocompleteDevice, AutocompleteTechnician},
 
   computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
     jobDescription: {
       get() {
         return this.$store.state.jobDescription;
@@ -167,7 +175,7 @@ export default {
 
       this.showCreatePage = !this.showCreatePage;
       this.showWoListPage = !this.showWoListPage;
-      ServiceWorkOrder.createMobileWO(data);
+      ServiceWorkOrder.createMobileWO(data, this.token);
     }
   }
 }
