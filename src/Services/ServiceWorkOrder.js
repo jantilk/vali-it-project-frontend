@@ -47,6 +47,15 @@ class ServiceWorkOrder {
         });
     }
 
+    findAllWoMobile(token){
+        return http.get("getWorkOrderAllMobile", {
+            params: {},
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+        });
+    }
+
     changeStatus(workOrderId){
         http.put("/updateWorkOrderStatus", null, {params: {"workOrderId":workOrderId}})
     }
