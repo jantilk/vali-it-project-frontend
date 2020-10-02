@@ -87,7 +87,7 @@ export default {
   },
 
   mounted() {
-    ServiceWorkOrder.findAllWo(this.token)
+    ServiceWorkOrder.findAllWoMobile(this.token)
         .then(response => {
           this.allWo = response.data;
         })

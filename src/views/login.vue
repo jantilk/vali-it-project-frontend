@@ -16,6 +16,7 @@
 
 <script>
 import ServiceTechnician from "@/Services/ServiceTechnician";
+import ServiceWorkOrder from "@/Services/ServiceWorkOrder";
 
 export default {
   name: "technician",
@@ -49,7 +50,14 @@ export default {
             .then((response) => {
               if (response.data.status === true) {
                 this.token = response.data.token;
+                ServiceWorkOrder.findAllWoMobile(this.token)
+                    .then(response => {
+                      this.allWo = response.data;
+                    })
+                    .catch(e => {console.log(e);});
+
               }
+
             })
             .catch(error => {
               console.log(error);

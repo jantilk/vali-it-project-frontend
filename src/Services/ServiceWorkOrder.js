@@ -74,6 +74,15 @@ class ServiceWorkOrder {
             }})
     }
 
+    findAllWoMobile(token){
+        return http.get("getWorkOrderAllMobile", {
+            params: {},
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+        });
+    }
+
     changeWorkOrderJobDescription(workOrderId, newJobDescription, token){
         http.put("/updateWorkOrderJobDescription", null, {
             params: {"workOrderId":workOrderId,"newWorkOrderJobDescription":newJobDescription},
