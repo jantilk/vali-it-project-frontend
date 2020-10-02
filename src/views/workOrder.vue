@@ -149,6 +149,16 @@ export default {
     this.workOrder = {}
     this.workOrder.deviceName = this.$route.params.deviceName;
   },
+  computed: {
+    token: {
+      get() {
+        return this.$store.state.token;
+      },
+      set(newValue) {
+        this.$store.commit("updateToken", newValue);
+      }
+    },
+  },
   methods: {
     createWorkOrder() {
       let data = {
@@ -160,7 +170,7 @@ export default {
         status: this.workOrder.status,
       };
 
-      ServiceWorkOrder.create(data, this.consumableAmount, this.consumableName2, this.consumableAmount2, this.consumableName3, this.consumableAmount3)
+      ServiceWorkOrder.create(data, this.consumableAmount, this.consumableName2, this.consumableAmount2, this.consumableName3, this.consumableAmount3, this.token)
           .then(this.submitted = true)
           .catch(e => {
             console.log(e);

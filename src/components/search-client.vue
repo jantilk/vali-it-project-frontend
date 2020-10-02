@@ -10,16 +10,6 @@
         </li>
       </ul>
     </div>
-
-    <!--      <div class="col-sm-8">-->
-    <!--        <ul>-->
-    <!--          <li v-for="device in devices">-->
-    <!--            {{device}}-->
-    <!--          </li>-->
-    <!--        </ul>-->
-    <!--      </div>-->
-
-
   </div>
 </template>
 
@@ -50,6 +40,9 @@ export default {
   },
   methods: {
     searchClientByName() {
+      if (this.name == "") {
+        this.clients = [];
+      } else {
       ServiceClient.findClientByName(this.name, this.token)
           .then(response => {
             this.clients = response.data;
@@ -58,16 +51,7 @@ export default {
           .catch(e => {
             console.log(e);
           });
-    },
-    deviceByClientId(clientId) {
-      ServiceDevice.searchDeviceByClientId(clientId)
-          .then(response => {
-            this.devices = response.data;
-          })
-          .catch(e => {
-            console.log(e);
-          });
-    }
+    }},
   },
 };
 </script>
