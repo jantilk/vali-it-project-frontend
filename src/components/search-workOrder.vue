@@ -18,13 +18,13 @@
       <input type="radio" v-model="statusParamWO" v-on:change="searchByStatus" value=true>
 
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" >
 
       <div v-if="!woSelected">
 
         <ul class="list-group">
 
-          <li class="list-group-item" v-for="workOrder in workOrders">
+          <v-list class="list-group-item" v-for="workOrder in workOrders" :color=workOrder.color >
 
             Work Order ID:
             <button @click="showSpecific(workOrder.workOrderId, workOrder.clientName, workOrder.technicianName, workOrder.status, workOrder.deviceName, workOrder.productName,
@@ -51,7 +51,7 @@
             Job Description:
             {{ workOrder.jobDescription }}
 
-          </li>
+          </v-list>
         </ul>
       </div>
 
@@ -125,6 +125,7 @@
 
 <script>
 import ServiceWorkOrder from "@/Services/ServiceWorkOrder";
+import workOrder from "@/views/workOrder";
 
 export default {
   name: "workOrders",
@@ -135,6 +136,7 @@ export default {
       statusParamWO: null,
       woSelected: false,
       workOrderId: null,
+      workOrderIdBug:[],//TODO - siin on segadus, see praegu vajalik
       workOrderClientName:null,
       workOrderTechnicianName:null,
       workOrderStatus:null,
@@ -186,19 +188,37 @@ export default {
     //         });
     //   }
     // },
-    searchByStatus() {
+    searchByStatus() {//TODO - see otsing tagastab "id" aga mitte "workOrderId", mis tekitab frondis veits segadust. Backi DTO issue.
       this.woSelected = false;
       this.anyParamWO = null;
       ServiceWorkOrder.findNotDone(this.statusParamWO, this.token)
           .then(response => {
-            this.workOrders = response.data;
+            let newReponse = [];
+            for(let i = 0; i < response.data.length; i++){
+              newReponse[i] = {
+                clientName: response.data[i].clientName,
+                color: response.data[i].color,
+                consumableName: response.data[i].consumableName,
+                deviceName: response.data[i].deviceName,
+                workOrderId: response.data[i].id,
+                jobDescription: response.data[i].jobDescription,
+                productId: response.data[i].productId,
+                productName: response.data[i].productName,
+                status: response.data[i].status,
+                technicianId: response.data[i].technicianId,
+                technicianName: response.data[i].technicianName
+              }
+            }
+            this.workOrders = newReponse;
+            // this.workOrderIdBug=this.workOrders.id;
+            // console.log(response.data);
+            // console.log(this.workOrderIdBug);
 
-            console.log(response.data);
           })
           .catch(e => {
             console.log(e);
           });
-      this.workOrderId=this.workOrders.id
+      // this.workOrderIdBug=this.workOrders.id;
     },
     showSpecific(workOrderId, workOrderClientName, workOrderTechnicianName, workOrderStatus, workOrderDeviceName, workOrderProductName,
     workOrderConsumableName, workOrderJobDescription) {
