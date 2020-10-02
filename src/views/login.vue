@@ -16,7 +16,6 @@
 
 <script>
 import ServiceTechnician from "@/Services/ServiceTechnician";
-import ServiceWorkOrder from "@/Services/ServiceWorkOrder";
 
 export default {
   name: "technician",
