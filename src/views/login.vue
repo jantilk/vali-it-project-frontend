@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
       <label for="stock">Password</label>
-      <input id="stock" v-model="login.password" class="form-control" name="stock" type="password">
+      <input id="stock" v-model="login.password" class="form-control" name="stock" type="password" v-on:keyup.enter="technicianLogin">
     </div>
     <div class="col-md-3">
       <button id="login" class="btn btn-success" @click="technicianLogin">Login</button>

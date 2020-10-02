@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
           <label for="productName">Product Name</label>
-          <input id="productName" v-model="device.product" class="form-control" name="product" required type="text">
+          <input id="productName" v-model="device.product" class="form-control" name="product" required type="text" v-on:keyup.enter="createDevice">
         </div>
 
         <button class="btn btn-success" @click="createDevice">Create</button>

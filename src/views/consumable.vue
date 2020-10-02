@@ -11,7 +11,7 @@
           </div>
           <div class="form-group">
             <label for="stock">Stock</label>
-            <input id="stock" v-model="consumable.stock" class="form-control" name="stock" required type="number">
+            <input id="stock" v-model="consumable.stock" class="form-control" name="stock" required type="number" v-on:keyup.enter="createConsumable">
           </div>
 
 

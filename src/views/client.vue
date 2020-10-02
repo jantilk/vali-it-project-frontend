@@ -8,7 +8,7 @@
     <div class="row" v-if="!submitted">
       <div class="col-md-8">
         <input v-model="client.name" class="form-control" name="name" placeholder="Create new client" required
-               type="text"/>
+               type="text" v-on:keyup.enter="createClient"/>
       </div>
       <div class="col-md-3" style="margin-left: 20px">
         <button class="btn btn-success" @click="createClient">Create</button>
