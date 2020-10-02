@@ -17,7 +17,7 @@
           <router-link to="/consumable" style="color:cadetblue; margin: 0px 10px">Consumable</router-link> |
           <router-link to="/login" style="color:cadetblue; margin-left: 10px">Login</router-link>
         </div>
-        <button @click.prevent="playSound('sheep.mp3')">
+        <button @click.prevent="playSound()">
         <v-img style="margin-left: 20px"
             alt="Vuetify Name"
             class="shrink mr-2"
@@ -51,7 +51,8 @@ export default {
     Mobile,
   },
   data: () => ({
-
+  playing: false,
+    audio: new Audio('sheep.mp3')
   }),
   beforeCreate() {
     if (this.$store.state.token === null) {
@@ -60,10 +61,12 @@ export default {
   },
 
   methods: {
-    playSound (sound) {
-      if(sound) {
-        var audio = new Audio(sound);
-        audio.play();
+    playSound () {
+      this.playing = !this.playing;
+      if(this.playing) {
+        this.audio.play();
+      } else {
+        this.audio.pause();
       }
     },
 }
