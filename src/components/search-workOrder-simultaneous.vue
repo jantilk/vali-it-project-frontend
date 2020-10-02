@@ -46,14 +46,16 @@
 
     <br>
     <div v-if="!woSelected">
+      <div v-if="searchConducted">
       <div class="row">
-        <div class="col-md-2">Client</div>
+        <div class="col-md-2">ID</div>
         <div class="col-md-2">Client</div>
         <div class="col-md-2">Technician</div>
         <div class="col-md-2">Device name</div>
         <div class="col-md-2">Work done?</div>
         <div class="col-md-2">Description</div>
       </div>
+    </div>
     </div>
     <div>
       <div v-if="!woSelected">
@@ -160,6 +162,7 @@ export default {
       clientName: "",
       searchAllParam: null,
       woSelected: false,
+      searchConducted: false,
       workOrderId: null,
       workOrderJobDescription: null,
       editStatusSelected: false,
@@ -170,9 +173,11 @@ export default {
   },
   methods: {
     searchWorkOrderSimultaneous() {
-      this.searchAllParam = null
+      this.searchAllParam = null;
+      this.searchConducted=true;
       if (this.clientName === "" && this.deviceName === "" && this.productName === "" && this.technicianName === "" && this.statusParamSimultaneous === null) {
         this.workOrders = []
+        this.searchConducted=false;
       } else {
         this.workOrders = [];
         ServiceWorkOrder.searchWorkOrderSimultaneous(this.clientName, this.deviceName, this.productName, this.technicianName, this.statusParamSimultaneous)
@@ -187,6 +192,7 @@ export default {
     },
     showSpecific(workOrderId, workOrderClientName, workOrderTechnicianName, workOrderDeviceName, workOrderStatus, workOrderJobDescription) {
       this.woSelected = true;
+      this.searchConducted=true;
       this.workOrderId = workOrderId;
       this.workOrderClientName = workOrderClientName;
       this.workOrderTechnicianName = workOrderTechnicianName;
@@ -222,10 +228,12 @@ export default {
     searchAll() {
       if (this.searchAllParam) {
         this.statusParamSimultaneous = null;
+        this.searchConducted=true;
         this.productName = "";
         this.deviceName = "";
         this.technicianName = "";
         this.clientName = "";
+        this.searchConducted=true;
         ServiceWorkOrder.findAllWo()
             .then(response => {
               this.workOrders = response.data;
@@ -236,6 +244,7 @@ export default {
             });
       } else {
         this.searchAllParam=null;
+        this.searchConducted=false;
         this.workOrders = [];
         this.statusParamSimultaneous = null;
       }
