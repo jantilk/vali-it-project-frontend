@@ -176,6 +176,13 @@ export default {
       this.showCreatePage = !this.showCreatePage;
       this.showWoListPage = !this.showWoListPage;
       ServiceWorkOrder.createMobileWO(data, this.token);
+
+
+      //Mis see?
+      // this.selectDevice = null;
+      // this.selectClient = null;
+      // this.selectTechnician = null;
+      // this.jobDescription = null;
     }
   }
 }
